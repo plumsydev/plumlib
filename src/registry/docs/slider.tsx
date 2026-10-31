@@ -3,6 +3,7 @@ import Default from "../demos/slider/default"
 import Tooltip from "../demos/slider/tooltip"
 import Range from "../demos/slider/range"
 import Vertical from "../demos/slider/vertical"
+import Playground from "../playgrounds/slider"
 
 export const doc: ComponentDoc = {
   slug: "slider",
@@ -18,6 +19,7 @@ export const doc: ComponentDoc = {
     { name: "vertical", title: "Vertical", component: Vertical },
   ],
   registryDependencies: ["label"],
+  playground: Playground,
   usage: {
     imports: `import { Slider } from "@/components/ui/slider"`,
     code: `<Slider defaultValue={[50]} max={100} step={1} />`,
