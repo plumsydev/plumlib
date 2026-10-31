@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/tooltip/default"
 import Sides from "../demos/tooltip/sides"
+import Interactive from "../demos/tooltip/interactive"
+import TooltipPlayground from "../playgrounds/tooltip"
 
 export const doc: ComponentDoc = {
   slug: "tooltip",
@@ -12,7 +14,14 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "sides", title: "Sides & arrow", description: "Pass `showArrow` for a pointer and `side` to position it.", component: Sides },
+    {
+      name: "interactive",
+      title: "Feedback",
+      description: "The label swaps after the action and the tooltip stays open long enough to read it.",
+      component: Interactive,
+    },
   ],
+  playground: TooltipPlayground,
   usage: {
     imports: `import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"`,
     code: `<Tooltip>
