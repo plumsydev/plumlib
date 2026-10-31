@@ -1,6 +1,9 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/dialog/default"
 import Scrollable from "../demos/dialog/scrollable"
+import Nested from "../demos/dialog/nested"
+import Form from "../demos/dialog/form"
+import DialogPlayground from "../playgrounds/dialog"
 
 export const doc: ComponentDoc = {
   slug: "dialog",
@@ -17,7 +20,20 @@ export const doc: ComponentDoc = {
       description: "Pin the header and footer and let the body scroll with a three-row grid.",
       component: Scrollable,
     },
+    {
+      name: "nested",
+      title: "Nested dialogs",
+      description: "Open a confirmation from inside a dialog: the parent steps back like a stack of cards. Type something, then try to close it.",
+      component: Nested,
+    },
+    {
+      name: "form",
+      title: "Form with validation",
+      description: "Live preview, inline errors that animate in, and a loading submit button.",
+      component: Form,
+    },
   ],
+  playground: DialogPlayground,
   usage: {
     imports: `import {
   Dialog,
@@ -61,6 +77,7 @@ export const doc: ComponentDoc = {
       component: "DialogContent",
       description: "The panel. Rendered in a portal together with the overlay.",
       props: [
+        { name: "size", type: '"sm" | "default" | "lg" | "xl" | "full"', default: '"default"', description: "Max width of the panel." },
         { name: "showCloseButton", type: "boolean", default: "true", description: "Renders the close button in the top-right corner." },
         { name: "onEscapeKeyDown", type: "(event: KeyboardEvent) => void", description: "Call `event.preventDefault()` to keep the dialog open." },
         { name: "onInteractOutside", type: "(event: Event) => void", description: "Fires on pointer down or focus outside the content." },
@@ -70,5 +87,7 @@ export const doc: ComponentDoc = {
   notes: [
     "Always render a `DialogTitle`. Hide it with `sr-only` if the design has no visible title — screen readers still need it.",
     "Focus is trapped inside and returned to the trigger on close.",
+    "A `Dialog` or `AlertDialog` opened from inside another dialog makes its parent recede automatically — no extra props.",
+    "`DialogBody` gives you a scrollable middle section with edge-to-edge dividers."
   ],
 }
