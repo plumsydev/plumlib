@@ -53,7 +53,7 @@ export default function DrawerDemo() {
                   <div className="text-xs text-muted-foreground">{c.range}</div>
                 </div>
                 <span className="text-xs text-muted-foreground">{c.progress}</span>
-                <Check className={cn("size-4 transition-[opacity,transform] duration-200", selected === c.id ? "scale-100 opacity-100" : "scale-50 opacity-0")} />
+                <Check className={cn("size-4 transition-[opacity,transform,translate,scale,rotate] duration-200", selected === c.id ? "scale-100 opacity-100" : "scale-50 opacity-0")} />
               </button>
             ))}
           </div>
