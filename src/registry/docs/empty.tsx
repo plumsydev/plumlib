@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/empty/default"
 import Search from "../demos/empty/search"
+import EmptyPlayground from "../playgrounds/empty"
+import StatesDemo from "../demos/empty/states"
 
 export const doc: ComponentDoc = {
   slug: "empty",
@@ -13,7 +15,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "search", title: "No results", description: "`EmptyMedia variant=\"icon\"` for a quieter look.", component: Search },
+    { name: "states", title: "Empty, loading, ready", description: "Swap between states with a soft crossfade.", component: StatesDemo },
   ],
+  playground: EmptyPlayground,
   usage: {
     imports: `import {
   Empty,
