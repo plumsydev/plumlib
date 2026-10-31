@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/pagination/default"
 import Compact from "../demos/pagination/compact"
+import PaginationPlayground from "../playgrounds/pagination"
+import DataDemo from "../demos/pagination/data"
 
 export const doc: ComponentDoc = {
   slug: "pagination",
@@ -12,7 +14,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "compact", title: "Compact", description: "Previous / next only, with a page counter.", component: Compact },
+    { name: "data", title: "Paginating real data", description: "The list slides in the direction you page.", component: DataDemo },
   ],
+  playground: PaginationPlayground,
   usage: {
     imports: `import {
   Pagination,
