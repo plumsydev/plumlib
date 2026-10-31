@@ -2,6 +2,8 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/avatar/default"
 import Group from "../demos/avatar/group"
 import Sizes from "../demos/avatar/sizes"
+import Fallbacks from "../demos/avatar/fallbacks"
+import AvatarPlayground from "../playgrounds/avatar"
 
 export const doc: ComponentDoc = {
   slug: "avatar",
@@ -14,9 +16,11 @@ export const doc: ComponentDoc = {
     { name: "default", component: Default },
     { name: "group", title: "Group", description: "Hover the stack — it fans out. `max` collapses the rest into a counter.", component: Group },
     { name: "sizes", title: "Sizes", component: Sizes },
+    { name: "fallbacks", title: "Generated avatars", description: "`avatarGradient(seed)` returns a unique, stable gradient as a data URI — no network request.", component: Fallbacks },
   ],
+  playground: AvatarPlayground,
   usage: {
-    imports: `import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"`,
+    imports: `import { Avatar, AvatarFallback, AvatarImage, avatarGradient } from "@/components/ui/avatar"`,
     code: `<Avatar>
   <AvatarImage src="/avatar.png" alt="Léa Martin" />
   <AvatarFallback>LM</AvatarFallback>
@@ -40,5 +44,8 @@ export const doc: ComponentDoc = {
       props: [{ name: "max", type: "number", description: "Maximum avatars shown before a +N counter." }],
     },
   ],
-  notes: ["`AvatarStatus` sits outside the clipped circle — add `overflow-visible` to the Avatar and `rounded-full` to the image."],
+  notes: [
+    "`avatarGradient(seed: string)` generates a placeholder image from any string, ideal for users without a photo.",
+    "`AvatarStatus` sits outside the clipped circle — add `overflow-visible` to the Avatar and `rounded-full` to the image.",
+  ],
 }
