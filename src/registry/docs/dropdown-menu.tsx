@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/dropdown-menu/default"
 import Checkboxes from "../demos/dropdown-menu/checkboxes"
+import Sort from "../demos/dropdown-menu/sort"
+import DropdownMenuPlayground from "../playgrounds/dropdown-menu"
 
 export const doc: ComponentDoc = {
   slug: "dropdown-menu",
@@ -8,7 +10,7 @@ export const doc: ComponentDoc = {
   description: "A menu of actions opened from a button. Full keyboard support, typeahead, submenus, checkbox and radio items.",
   category: "Overlays",
   primitive: { name: "Radix Dropdown Menu", href: "https://www.radix-ui.com/primitives/docs/components/dropdown-menu" },
-  dependencies: ["radix-ui", "lucide-react"],
+  dependencies: ["radix-ui", "lucide-react", "motion"],
   demos: [
     { name: "default", component: Default },
     {
@@ -17,7 +19,14 @@ export const doc: ComponentDoc = {
       description: "Prevent the default `onSelect` to keep the menu open while toggling.",
       component: Checkboxes,
     },
+    {
+      name: "sort",
+      title: "Sort",
+      description: "A radio group that reorders a list. Rows glide to their new position.",
+      component: Sort,
+    },
   ],
+  playground: DropdownMenuPlayground,
   usage: {
     imports: `import {
   DropdownMenu,
