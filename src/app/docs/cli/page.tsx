@@ -41,7 +41,7 @@ export default function CliPage() {
         description="plum-ui is a zero-dependency CLI that copies components into your project. It reads a plain JSON registry you can host anywhere."
       />
 
-      <CodeBlock lang="bash" code="npx plum-ui@latest --help" />
+      <CodeBlock lang="bash" code="npx @plumsydev/plum-ui@latest --help" />
 
       <H2 id="commands">Commands</H2>
       <div className="my-4 divide-y rounded-xl border">
@@ -54,7 +54,7 @@ export default function CliPage() {
       </div>
       <CodeBlock
         lang="bash"
-        code={`npx plum-ui add combobox
+        code={`npx @plumsydev/plum-ui add combobox
 # ◆ Resolving combobox
 # │ also needs popover, command
 # │ + src/components/ui/combobox.tsx
@@ -103,7 +103,7 @@ export default function CliPage() {
         Fork the repo, change a component, deploy. Point the CLI at your copy and your whole team installs your
         flavour of Plum UI:
       </P>
-      <CodeBlock lang="bash" code={`PLUM_REGISTRY=https://ui.acme.dev/registry npx plum-ui add button`} />
+      <CodeBlock lang="bash" code={`PLUM_REGISTRY=https://ui.acme.dev/registry npx @plumsydev/plum-ui add button`} />
 
       <H2 id="compatibility">Compatibility</H2>
       <P>
