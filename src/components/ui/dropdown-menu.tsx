@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui"
-import { Check, ChevronRight } from "lucide-react"
+import { ChevronRight } from "lucide-react"
+import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 
 const contentClass =
@@ -14,6 +15,25 @@ const itemClass = cn(
   "data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8",
   "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
 )
+
+
+// la coche se dessine au montage, l'indicateur radix ne monte que qd c'est coché donc pile au bon moment
+function MenuCheck() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" className="size-3.5 text-foreground" aria-hidden>
+      <motion.path
+        d="M3.5 8.5L6.5 11.5L12.5 4.5"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 0.32, ease: [0.65, 0, 0.35, 1] }}
+      />
+    </svg>
+  )
+}
 
 function DropdownMenu(props: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
   return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />
@@ -87,8 +107,8 @@ function DropdownMenuCheckboxItem({
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center">
-        <DropdownMenuPrimitive.ItemIndicator className="animate-[pl-pop-in_0.2s_var(--ease-out-expo)]">
-          <Check className="size-3.5 !text-foreground" />
+        <DropdownMenuPrimitive.ItemIndicator>
+          <MenuCheck />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -113,7 +133,12 @@ function DropdownMenuRadioItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-4 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <span className="block size-1.5 rounded-full bg-foreground" />
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 600, damping: 22 }}
+            className="block size-1.5 rounded-full bg-foreground"
+          />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -184,7 +209,7 @@ function DropdownMenuSubContent({ className, ...props }: React.ComponentProps<ty
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.SubContent
         data-slot="dropdown-menu-sub-content"
-        className={cn("pl-pop origin-(--radix-dropdown-menu-content-transform-origin)", contentClass, className)}
+        className={cn("pl-pop origin-(--radix-dropdown-menu-content-transform-origin) shadow-xl", contentClass, className)}
         {...props}
       />
     </DropdownMenuPrimitive.Portal>
