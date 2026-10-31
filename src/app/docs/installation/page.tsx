@@ -58,7 +58,7 @@ export default async function InstallationPage() {
           </Tabs>
         </Step>
         <Step title="Initialize Plum UI">
-          <CodeBlock lang="bash" code="npx plumui init" />
+          <CodeBlock lang="bash" code="npx plum-ui init" />
           <P>
             The CLI detects your package manager, your import alias and your global stylesheet, then writes{" "}
             <Code>plum.json</Code>, the <Code>cn()</Code> helper, the shared spring presets and the theme, and links
@@ -82,7 +82,7 @@ export default async function InstallationPage() {
           />
         </Step>
         <Step title="Add components">
-          <CodeBlock lang="bash" code="npx plumui add button dialog toast" />
+          <CodeBlock lang="bash" code="npx plum-ui add button dialog toast" />
           <P>Dependencies between components are resolved for you: adding a dialog also brings the button it uses.</P>
         </Step>
         <Step title="Use them">
