@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/popover/default"
 import Picker from "../demos/popover/picker"
+import Filters from "../demos/popover/filters"
+import PopoverPlayground from "../playgrounds/popover"
 
 export const doc: ComponentDoc = {
   slug: "popover",
@@ -12,7 +14,14 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "picker", title: "Controlled picker", description: "Control `open` to close the popover after a selection.", component: Picker },
+    {
+      name: "filters",
+      title: "Filters",
+      description: "A popover that drives the UI behind it. Toggle a status and the list animates.",
+      component: Filters,
+    },
   ],
+  playground: PopoverPlayground,
   usage: {
     imports: `import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"`,
     code: `<Popover>
@@ -36,6 +45,7 @@ export const doc: ComponentDoc = {
         { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "Alignment against the trigger." },
         { name: "sideOffset", type: "number", default: "6", description: "Distance from the trigger in px." },
         { name: "collisionPadding", type: "number", default: "0", description: "Space kept between the content and the viewport edges." },
+        { name: "showArrow", type: "boolean", default: "false", description: "Adds an arrow that points at the trigger, with the border wrapped around it." },
       ],
     },
   ],
