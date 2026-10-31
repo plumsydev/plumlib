@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/breadcrumb/default"
 import Separator from "../demos/breadcrumb/separator"
+import BreadcrumbPlayground from "../playgrounds/breadcrumb"
+import DropdownDemo from "../demos/breadcrumb/dropdown"
 
 export const doc: ComponentDoc = {
   slug: "breadcrumb",
@@ -11,7 +13,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "separator", title: "Custom separator", description: "Pass any icon as children of `BreadcrumbSeparator`.", component: Separator },
+    { name: "dropdown", title: "Collapsed with a menu", description: "Hide middle levels behind an ellipsis that opens a dropdown. Click a level to go up.", component: DropdownDemo },
   ],
+  playground: BreadcrumbPlayground,
   usage: {
     imports: `import {
   Breadcrumb,
