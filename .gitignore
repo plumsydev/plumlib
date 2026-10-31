@@ -7,3 +7,7 @@ next-env.d.ts
 .env*.local
 public/r
 public/registry
+
+# outils locaux
+.claude/
+CLAUDE.md
