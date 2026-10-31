@@ -4,7 +4,7 @@ export const siteConfig = {
     "Beautifully animated, accessible React components you copy into your app. Built on Radix, Tailwind CSS and Motion.",
   // à changer qd t'auras le vrai domaine, sert aux urls du registry
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ui.plumsy.dev",
-  github: "https://github.com/plumsy/plumlib",
+  github: "https://github.com/plumsydev/plumlib",
 }
 
 // le registry plum, celui que la cli lit
