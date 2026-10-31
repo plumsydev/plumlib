@@ -14,7 +14,7 @@ export default function TypewriterTerminal() {
       <div className="p-4 font-mono text-[13px]">
         <span className="text-brand">❯ </span>
         <Typewriter
-          words={["pnpm dlx plumui add dock", "git commit -m \"feat: add dock\"", "pnpm dev --turbo"]}
+          words={["pnpm dlx plum-ui add dock", "git commit -m \"feat: add dock\"", "pnpm dev --turbo"]}
           typeSpeed={45}
           pause={1400}
           cursorClassName="w-[7px] rounded-none opacity-80"
