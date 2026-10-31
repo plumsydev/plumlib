@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Plum UI registry index",
+  "type": "object",
+  "required": ["name", "items"],
+  "properties": {
+    "name": { "type": "string" },
+    "homepage": { "type": "string" },
+    "items": { "type": "array", "items": { "type": "object", "required": ["name", "type"] } }
+  }
+}
