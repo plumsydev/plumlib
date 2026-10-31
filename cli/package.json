@@ -1,0 +1,11 @@
+{
+  "name": "plumui",
+  "version": "0.1.0",
+  "description": "Add Plum UI components to your project.",
+  "type": "module",
+  "bin": { "plumui": "./bin/plumui.mjs" },
+  "files": ["bin"],
+  "engines": { "node": ">=18.17" },
+  "keywords": ["react", "components", "ui", "tailwind", "radix", "motion", "plum"],
+  "license": "MIT"
+}
