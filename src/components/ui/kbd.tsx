@@ -8,7 +8,7 @@ function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
       className={cn(
         "pointer-events-none inline-flex h-5 min-w-5 w-fit select-none items-center justify-center gap-1 rounded-[5px] border border-b-2 bg-muted px-1",
         "font-sans text-[11px] font-medium text-muted-foreground",
-        "transition-[transform,border-width,background-color,color] duration-100",
+        "transition-[transform,translate,scale,rotate,border-width,background-color,color] duration-100",
         // data-pressed pr animer une touche qd on l'enfonce pour de vrai
         "data-[pressed=true]:translate-y-px data-[pressed=true]:border-b data-[pressed=true]:bg-accent data-[pressed=true]:text-foreground",
         "[&_svg:not([class*='size-'])]:size-3",
