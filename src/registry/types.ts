@@ -1,6 +1,6 @@
 import type { ComponentType } from "react"
 
-export type Category = "Inputs" | "Overlays" | "Feedback" | "Navigation" | "Data Display"
+export type Category = "Inputs" | "Overlays" | "Feedback" | "Navigation" | "Data Display" | "Motion"
 
 export type PropDef = {
   name: string
@@ -26,6 +26,11 @@ export type ComponentDoc = {
    * le fichier source est src/registry/demos/<slug>/<name>.tsx
    */
   demos: { name: string; title?: string; description?: string; component: ComponentType }[]
+  /**
+   * playground interactif avec des contrôles de props
+   * fichier src/registry/playgrounds/<slug>.tsx, export default un composant client
+   */
+  playground?: ComponentType
   usage: { imports: string; code: string }
   api?: { component: string; description?: string; props: PropDef[] }[]
   notes?: string[]
