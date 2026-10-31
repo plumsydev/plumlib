@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/kbd/default"
 import Interactive from "../demos/kbd/interactive"
+import KbdPlayground from "../playgrounds/kbd"
+import ShortcutsDemo from "../demos/kbd/shortcuts"
 
 export const doc: ComponentDoc = {
   slug: "kbd",
@@ -10,7 +12,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "interactive", title: "Pressed state", description: "Set `data-pressed` to sink the key — wire it to real keyboard events.", component: Interactive },
+    { name: "shortcuts", title: "Shortcut sheet", description: "Rows light up when you press the matching shortcut.", component: ShortcutsDemo },
   ],
+  playground: KbdPlayground,
   usage: {
     imports: `import { Kbd, KbdGroup } from "@/components/ui/kbd"`,
     code: `<KbdGroup>
