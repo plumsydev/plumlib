@@ -16,7 +16,7 @@ const rise = (delay: number) => ({
 })
 
 export function Hero({ count }: { count: number }) {
-  const command = "npx shadcn@latest add @plum/button"
+  const command = "npx plumui init"
 
   return (
     <section className="relative overflow-hidden">
