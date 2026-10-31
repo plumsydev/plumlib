@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/toggle-group/default"
 import Icons from "../demos/toggle-group/icons"
 import Multiple from "../demos/toggle-group/multiple"
+import Playground from "../playgrounds/toggle-group"
 
 export const doc: ComponentDoc = {
   slug: "toggle-group",
@@ -15,6 +16,7 @@ export const doc: ComponentDoc = {
     { name: "icons", title: "Variants", description: "`outline` and `ghost` variants, with icons and sizes.", component: Icons },
     { name: "multiple", title: "Multiple", description: "With `type=\"multiple\"` each active item fades its own background in.", component: Multiple },
   ],
+  playground: Playground,
   usage: {
     imports: `import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"`,
     code: `<ToggleGroup type="single" defaultValue="week">
