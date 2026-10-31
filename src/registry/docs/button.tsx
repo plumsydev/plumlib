@@ -4,6 +4,7 @@ import Variants from "../demos/button/variants"
 import Sizes from "../demos/button/sizes"
 import Loading from "../demos/button/loading"
 import AsChild from "../demos/button/as-child"
+import ButtonPlayground from "../playgrounds/button"
 
 export const doc: ComponentDoc = {
   slug: "button",
@@ -24,6 +25,7 @@ export const doc: ComponentDoc = {
     },
     { name: "as-child", title: "As child", description: "Render any element — like a Next.js Link — with button styles.", component: AsChild },
   ],
+  playground: ButtonPlayground,
   usage: {
     imports: `import { Button } from "@/components/ui/button"`,
     code: `<Button variant="outline">Button</Button>`,
