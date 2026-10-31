@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/radio-group/default"
 import Cards from "../demos/radio-group/cards"
+import Playground from "../playgrounds/radio-group"
+import Frequency from "../demos/radio-group/frequency"
 
 export const doc: ComponentDoc = {
   slug: "radio-group",
@@ -13,7 +15,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "cards", title: "Cards", description: "`RadioGroupCard` turns a whole block into a radio.", component: Cards },
+    { name: "frequency", title: "Controlled", description: "Read the value to drive the rest of the UI.", component: Frequency },
   ],
+  playground: Playground,
   usage: {
     imports: `import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`,
     code: `<RadioGroup defaultValue="a">
