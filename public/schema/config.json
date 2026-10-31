@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Plum UI config",
+  "type": "object",
+  "required": ["registry", "paths", "aliases"],
+  "properties": {
+    "registry": { "type": "string", "description": "Base URL of the registry, without trailing slash." },
+    "paths": {
+      "type": "object",
+      "required": ["ui", "lib", "css"],
+      "properties": {
+        "ui": { "type": "string", "description": "Folder where components are written." },
+        "lib": { "type": "string", "description": "Folder for utils.ts and motion.ts." },
+        "css": { "type": "string", "description": "Global stylesheet that imports Tailwind." }
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "required": ["ui", "lib"],
+      "properties": {
+        "ui": { "type": "string", "description": "Import alias for the ui folder, e.g. @/components/ui." },
+        "lib": { "type": "string", "description": "Import alias for the lib folder, e.g. @/lib." }
+      }
+    }
+  }
+}
