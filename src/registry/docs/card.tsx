@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/card/default"
 import Interactive from "../demos/card/interactive"
+import CardPlayground from "../playgrounds/card"
+import PricingDemo from "../demos/card/pricing"
 
 export const doc: ComponentDoc = {
   slug: "card",
@@ -10,7 +12,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "interactive", title: "Interactive", description: "`interactive` adds a soft lift on hover — great for link cards.", component: Interactive },
+    { name: "pricing", title: "Pricing cards", description: "Prices roll when you switch the billing period.", component: PricingDemo },
   ],
+  playground: CardPlayground,
   usage: {
     imports: `import {
   Card,
