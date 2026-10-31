@@ -16,8 +16,10 @@ function HoverCardContent({
   className,
   align = "center",
   sideOffset = 6,
+  showArrow = false,
+  children,
   ...props
-}: React.ComponentProps<typeof HoverCardPrimitive.Content>) {
+}: React.ComponentProps<typeof HoverCardPrimitive.Content> & { showArrow?: boolean }) {
   return (
     <HoverCardPrimitive.Portal>
       <HoverCardPrimitive.Content
@@ -29,7 +31,16 @@ function HoverCardContent({
           className
         )}
         {...props}
-      />
+      >
+        {children}
+        {showArrow && (
+          <HoverCardPrimitive.Arrow asChild width={14} height={7}>
+            <svg viewBox="0 0 14 7" className="-mt-px block fill-popover stroke-border" aria-hidden>
+              <path d="M0 0.5 L7 6.5 L14 0.5" strokeWidth={1} />
+            </svg>
+          </HoverCardPrimitive.Arrow>
+        )}
+      </HoverCardPrimitive.Content>
     </HoverCardPrimitive.Portal>
   )
 }
