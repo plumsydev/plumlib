@@ -1,0 +1,196 @@
+/* plum ui — le thème complet, à copier tel quel ds ton globals.css */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+
+  --background: oklch(0.995 0 0);
+  --foreground: oklch(0.16 0.006 286);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.006 286);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.006 286);
+  --primary: oklch(0.2 0.006 286);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.965 0.002 286);
+  --secondary-foreground: oklch(0.2 0.006 286);
+  --muted: oklch(0.965 0.002 286);
+  --muted-foreground: oklch(0.52 0.012 286);
+  --accent: oklch(0.955 0.003 286);
+  --accent-foreground: oklch(0.2 0.006 286);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.62 0.15 155);
+  --warning: oklch(0.75 0.15 75);
+  --info: oklch(0.6 0.15 250);
+  --brand: oklch(0.56 0.2 330);
+  --brand-foreground: oklch(0.985 0 0);
+  --border: oklch(0.915 0.004 286);
+  --input: oklch(0.9 0.004 286);
+  --ring: oklch(0.56 0.2 330 / 45%);
+  --overlay: oklch(0.16 0.006 286 / 35%);
+  --shadow-color: 240 6% 10%;
+}
+
+.dark {
+  --background: oklch(0.135 0.004 286);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.165 0.005 286);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.18 0.005 286);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.97 0 0);
+  --primary-foreground: oklch(0.18 0.005 286);
+  --secondary: oklch(0.22 0.006 286);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.21 0.006 286);
+  --muted-foreground: oklch(0.68 0.012 286);
+  --accent: oklch(0.235 0.006 286);
+  --accent-foreground: oklch(0.97 0 0);
+  --destructive: oklch(0.65 0.2 22);
+  --destructive-foreground: oklch(0.985 0 0);
+  --success: oklch(0.7 0.15 155);
+  --warning: oklch(0.8 0.14 80);
+  --info: oklch(0.7 0.14 250);
+  --brand: oklch(0.7 0.17 330);
+  --brand-foreground: oklch(0.16 0.006 286);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: oklch(0.7 0.17 330 / 50%);
+  --overlay: oklch(0 0 0 / 55%);
+  --shadow-color: 0 0% 0%;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-overlay: var(--overlay);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* les courbes qui font tt le feeling, touche pas stv */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-quart: cubic-bezier(0.5, 0, 0.75, 0);
+  --ease-spring: linear(0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 0.938 16.7%, 1.017 19.4%, 1.067, 1.099 24.3%, 1.108 26%, 1.100 27.9%, 1.078 30.1%, 1.002 38.4%, 0.985 42%, 0.98 46.6%, 0.991 59.6%, 1.001 70%, 1);
+
+  --shadow-xs: 0 1px 2px hsl(var(--shadow-color) / 0.05);
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.06), 0 1px 3px hsl(var(--shadow-color) / 0.08);
+  --shadow-md: 0 2px 4px hsl(var(--shadow-color) / 0.04), 0 4px 12px hsl(var(--shadow-color) / 0.08);
+  --shadow-lg: 0 4px 8px hsl(var(--shadow-color) / 0.04), 0 12px 32px -4px hsl(var(--shadow-color) / 0.14);
+  --shadow-xl: 0 8px 16px hsl(var(--shadow-color) / 0.06), 0 24px 64px -8px hsl(var(--shadow-color) / 0.22);
+
+  --animate-shimmer: pl-shimmer 1.8s ease-in-out infinite;
+  --animate-spin-slow: spin 1.4s linear infinite;
+  --animate-fade-up: pl-fade-up 0.6s var(--ease-out-expo) both;
+}
+
+@keyframes pl-pop-in {
+  from { opacity: 0; transform: translate(var(--pl-x, 0), var(--pl-y, 0)) scale(0.96); filter: blur(2px); }
+}
+@keyframes pl-pop-out {
+  to { opacity: 0; transform: translate(var(--pl-x, 0), var(--pl-y, 0)) scale(0.97); filter: blur(1px); }
+}
+@keyframes pl-fade-in { from { opacity: 0; } }
+@keyframes pl-fade-out { to { opacity: 0; } }
+@keyframes pl-dialog-in {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 10px)) scale(0.96); filter: blur(4px); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: blur(0); }
+}
+@keyframes pl-dialog-out {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, calc(-50% + 6px)) scale(0.97); filter: blur(2px); }
+}
+@keyframes pl-slide-in { from { transform: translate(var(--pl-sx, 0), var(--pl-sy, 0)); } }
+@keyframes pl-slide-out { to { transform: translate(var(--pl-sx, 0), var(--pl-sy, 0)); } }
+@keyframes pl-collapse-down { from { height: 0; opacity: 0; } to { height: var(--pl-content-height); opacity: 1; } }
+@keyframes pl-collapse-up { from { height: var(--pl-content-height); opacity: 1; } to { height: 0; opacity: 0; } }
+@keyframes pl-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+@keyframes pl-fade-up { from { opacity: 0; transform: translateY(12px); filter: blur(6px); } }
+
+/* menus popovers tooltips, l'origine suit le trigger grace à radix */
+@utility pl-pop {
+  &[data-side="top"] { --pl-y: 4px; }
+  &[data-side="bottom"] { --pl-y: -4px; }
+  &[data-side="left"] { --pl-x: 4px; }
+  &[data-side="right"] { --pl-x: -4px; }
+  &[data-state="open"], &[data-state="delayed-open"], &[data-state="instant-open"] {
+    animation: pl-pop-in 0.22s var(--ease-out-expo);
+  }
+  &[data-state="closed"] { animation: pl-pop-out 0.12s var(--ease-in-quart) forwards; }
+}
+
+@utility pl-overlay {
+  &[data-state="open"] { animation: pl-fade-in 0.3s var(--ease-out-quart); }
+  &[data-state="closed"] { animation: pl-fade-out 0.2s var(--ease-in-quart) forwards; }
+}
+
+@utility pl-dialog {
+  &[data-state="open"] { animation: pl-dialog-in 0.4s var(--ease-out-expo); }
+  &[data-state="closed"] { animation: pl-dialog-out 0.16s var(--ease-in-quart) forwards; }
+}
+
+/* les sheets glissent du bord, data-side posé par le composant */
+@utility pl-slide {
+  &[data-side="right"] { --pl-sx: 100%; }
+  &[data-side="left"] { --pl-sx: -100%; }
+  &[data-side="top"] { --pl-sy: -100%; }
+  &[data-side="bottom"] { --pl-sy: 100%; }
+  &[data-state="open"] { animation: pl-slide-in 0.5s var(--ease-out-expo); }
+  &[data-state="closed"] { animation: pl-slide-out 0.25s var(--ease-in-quart) forwards; }
+}
+
+/* accordion & collapsible, radix nous file la hauteur ds une var */
+@utility pl-collapse {
+  overflow: hidden;
+  --pl-content-height: var(--radix-accordion-content-height, var(--radix-collapsible-content-height));
+  &[data-state="open"] { animation: pl-collapse-down 0.35s var(--ease-out-expo); }
+  &[data-state="closed"] { animation: pl-collapse-up 0.25s var(--ease-out-quart) forwards; }
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  /* scrollbars fines partout, les grosses barres grises c non */
+  * { scrollbar-width: thin; scrollbar-color: color-mix(in oklch, var(--foreground) 15%, transparent) transparent; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection { background: color-mix(in oklch, var(--brand) 25%, transparent); }
+}
+
+/* les gens qui veulent pas de mouvement on les respecte */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
