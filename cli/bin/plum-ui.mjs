@@ -107,7 +107,7 @@ async function confirm(question, fallback = true) {
 
 async function loadConfig(cwd) {
   const config = await readJson(path.join(cwd, CONFIG))
-  if (!config) log.fail(`No ${CONFIG} found. Run ${c.bold("npx plum-ui init")} first.`)
+  if (!config) log.fail(`No ${CONFIG} found. Run ${c.bold("npx @plumsydev/plum-ui init")} first.`)
   return config
 }
 
@@ -132,7 +132,7 @@ async function resolveTree(registry, names) {
     const name = queue.shift()
     if (items.has(name)) continue
     const item = await fetchJson(`${registry}/${name}.json`)
-    if (!item) log.fail(`Unknown component ${c.bold(name)}. Run ${c.bold("npx plum-ui list")} to see them all.`)
+    if (!item) log.fail(`Unknown component ${c.bold(name)}. Run ${c.bold("npx @plumsydev/plum-ui list")} to see them all.`)
     items.set(name, item)
     queue.push(...(item.registryDependencies ?? []))
   }
@@ -258,7 +258,7 @@ async function init(cwd, flags) {
   await linkTheme(cwd, config)
   await installDeps(cwd, [...BASE_DEPS, ...itemDeps], flags)
 
-  console.log(`\n${c.green("✓")} Ready. Add your first component:\n\n  ${c.bold("npx plum-ui add button dialog toast")}\n`)
+  console.log(`\n${c.green("✓")} Ready. Add your first component:\n\n  ${c.bold("npx @plumsydev/plum-ui add button dialog toast")}\n`)
 }
 
 async function add(cwd, names, flags) {
@@ -268,7 +268,7 @@ async function add(cwd, names, flags) {
     const index = await fetchJson(`${registry}/index.json`)
     names = index.items.filter((i) => i.type === "ui").map((i) => i.name)
   }
-  if (!names.length) log.fail(`Tell me what to add, e.g. ${c.bold("npx plum-ui add button")}`)
+  if (!names.length) log.fail(`Tell me what to add, e.g. ${c.bold("npx @plumsydev/plum-ui add button")}`)
 
   log.info(`Resolving ${names.map((n) => c.bold(n)).join(", ")}`)
   const items = await resolveTree(registry, names)
@@ -352,27 +352,27 @@ async function diff(cwd, names, flags) {
     }
   }
   if (!changed) log.ok("Your components match the registry")
-  else console.log(`\n${c.dim(`Run ${c.bold("npx plum-ui add <name> --overwrite")} to take the registry version.`)}`)
+  else console.log(`\n${c.dim(`Run ${c.bold("npx @plumsydev/plum-ui add <name> --overwrite")} to take the registry version.`)}`)
 }
 
 function help() {
   console.log(`
-${c.plum("●")} ${c.bold("plum-ui")} ${c.dim(`v${VERSION}`)} — add Plum UI components to your project
+${c.plum("●")} ${c.bold("@plumsydev/plum-ui")} ${c.dim(`v${VERSION}`)} — add Plum UI components to your project
 
 ${c.bold("Usage")}
-  npx plum-ui init               set up plum.json, utils, motion presets and the theme
-  npx plum-ui add <name...>      add components and everything they need
-  npx plum-ui add --all          add every component
-  npx plum-ui list               browse the registry
-  npx plum-ui diff [name...]     compare your files with the registry
+  npx @plumsydev/plum-ui init               set up plum.json, utils, motion presets and the theme
+  npx @plumsydev/plum-ui add <name...>      add components and everything they need
+  npx @plumsydev/plum-ui add --all          add every component
+  npx @plumsydev/plum-ui list               browse the registry
+  npx @plumsydev/plum-ui diff [name...]     compare your files with the registry
 
 ${c.bold("Options")}
-  -y, --yes                     accept defaults, never prompt
-  -o, --overwrite               replace existing files
-  --dry-run                     show what would be written
-  --no-install                  don't install npm dependencies
-  --cwd <dir>                   run in another directory
-  --registry <url>              use another registry (env: PLUM_REGISTRY)
+  -y, --yes                                 accept defaults, never prompt
+  -o, --overwrite                           replace existing files
+  --dry-run                                 show what would be written
+  --no-install                              don't install npm dependencies
+  --cwd <dir>                               run in another directory
+  --registry <url>                          use another registry (env: PLUM_REGISTRY)
 `)
 }
 
@@ -385,4 +385,4 @@ else if (command === "init") await init(cwd, flags)
 else if (command === "add") await add(cwd, args, flags)
 else if (command === "list" || command === "ls") await list(cwd, flags)
 else if (command === "diff") await diff(cwd, args, flags)
-else log.fail(`Unknown command ${c.bold(command)}. Run ${c.bold("npx plum-ui --help")}.`)
+else log.fail(`Unknown command ${c.bold(command)}. Run ${c.bold("npx @plumsydev/plum-ui --help")}.`)
