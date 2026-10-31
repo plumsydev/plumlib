@@ -43,6 +43,35 @@ import { doc as toast } from "./docs/toast"
 import { doc as toggle } from "./docs/toggle"
 import { doc as toggleGroup } from "./docs/toggle-group"
 import { doc as tooltip } from "./docs/tooltip"
+import { doc as textEffect } from "./docs/text-effect"
+import { doc as textShimmer } from "./docs/text-shimmer"
+import { doc as typewriter } from "./docs/typewriter"
+import { doc as magnetic } from "./docs/magnetic"
+import { doc as spotlight } from "./docs/spotlight"
+import { doc as tilt } from "./docs/tilt"
+import { doc as marquee } from "./docs/marquee"
+import { doc as dock } from "./docs/dock"
+import { doc as borderBeam } from "./docs/border-beam"
+import { doc as animatedList } from "./docs/animated-list"
+import { doc as numberInput } from "./docs/number-input"
+import { doc as tagInput } from "./docs/tag-input"
+import { doc as passwordInput } from "./docs/password-input"
+import { doc as rating } from "./docs/rating"
+import { doc as colorPicker } from "./docs/color-picker"
+import { doc as fileUpload } from "./docs/file-upload"
+import { doc as combobox } from "./docs/combobox"
+import { doc as calendar } from "./docs/calendar"
+import { doc as datePicker } from "./docs/date-picker"
+import { doc as navigationMenu } from "./docs/navigation-menu"
+import { doc as menubar } from "./docs/menubar"
+import { doc as expandable } from "./docs/expandable"
+import { doc as carousel } from "./docs/carousel"
+import { doc as timeline } from "./docs/timeline"
+import { doc as stepper } from "./docs/stepper"
+import { doc as tree } from "./docs/tree"
+import { doc as resizable } from "./docs/resizable"
+import { doc as sortable } from "./docs/sortable"
+import { doc as chart } from "./docs/chart"
 
 export const components: ComponentDoc[] = [
   accordion, alert, alertDialog, animatedNumber, avatar, badge, breadcrumb, button, card, checkbox,
@@ -50,9 +79,13 @@ export const components: ComponentDoc[] = [
   input, inputOtp, kbd, label, pagination, popover, progress, radioGroup, scrollArea, select,
   separator, sheet, skeleton, slider, spinner, switchDoc, table, tabs, textarea, toast,
   toggle, toggleGroup, tooltip,
+  textEffect, textShimmer, typewriter, magnetic, spotlight, tilt, marquee, dock, borderBeam, animatedList,
+  numberInput, tagInput, passwordInput, rating, colorPicker, fileUpload, combobox,
+  calendar, datePicker, navigationMenu, menubar, expandable,
+  carousel, timeline, stepper, tree, resizable, sortable, chart,
 ].sort((a, b) => a.name.localeCompare(b.name))
 
-export const categories: Category[] = ["Inputs", "Overlays", "Feedback", "Navigation", "Data Display"]
+export const categories: Category[] = ["Inputs", "Overlays", "Feedback", "Navigation", "Data Display", "Motion"]
 
 export function getComponent(slug: string) {
   return components.find((c) => c.slug === slug)
