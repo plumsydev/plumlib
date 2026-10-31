@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/progress/default"
 import Indeterminate from "../demos/progress/indeterminate"
 import Ring from "../demos/progress/ring"
+import ProgressPlayground from "../playgrounds/progress"
 
 export const doc: ComponentDoc = {
   slug: "progress",
@@ -15,6 +16,7 @@ export const doc: ComponentDoc = {
     { name: "indeterminate", title: "Indeterminate", description: "Pass `value={null}` when you can't measure progress.", component: Indeterminate },
     { name: "ring", title: "Ring", description: "`ProgressRing` for compact, circular progress.", component: Ring },
   ],
+  playground: ProgressPlayground,
   usage: {
     imports: `import { Progress, ProgressRing } from "@/components/ui/progress"`,
     code: `<Progress value={42} />
