@@ -82,7 +82,7 @@ function Slider({
           data-slot="slider-thumb"
           className={cn(
             "relative block size-4 shrink-0 cursor-grab rounded-full border border-primary/60 bg-background shadow-md",
-            "transition-[transform,box-shadow] duration-300 ease-spring outline-none",
+            "transition-[scale,box-shadow] duration-300 ease-spring outline-none",
             "hover:scale-110 focus-visible:ring-[4px] focus-visible:ring-ring",
             "group-data-[dragging]/slider:scale-125 group-data-[dragging]/slider:cursor-grabbing group-data-[dragging]/slider:ring-[5px] group-data-[dragging]/slider:ring-ring/60",
             "disabled:pointer-events-none"
