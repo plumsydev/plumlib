@@ -38,7 +38,7 @@ export default function IntroductionPage() {
     >
       <DocsHeader
         title="Introduction"
-        description="Plum UI is a set of animated, accessible React components you copy into your app. Built on Radix, Tailwind CSS v4 and Motion — compatible with the shadcn CLI."
+        description="Plum UI is a set of animated, accessible React components you copy into your app. Built on Radix, Tailwind CSS v4 and Motion, installed with its own CLI."
       />
 
       <div className="flex flex-wrap gap-3">
@@ -54,8 +54,9 @@ export default function IntroductionPage() {
 
       <P className="mt-8">
         This is not a component library you depend on. It&apos;s a collection of well-made pieces you take ownership of.
-        If you&apos;ve used shadcn/ui, you already know how it works: same conventions, same CLI, same file layout —
-        with a motion layer and a sharper default look on top.
+        Run <code className="font-mono text-[0.9em]">npx plumui add</code>, and the component lands in your repo as a
+        readable file. Every piece is animated by design, keyboard accessible, themed by a single CSS file — and
+        yours to change.
       </P>
 
       <H2 id="principles">Principles</H2>
@@ -93,7 +94,7 @@ export default function IntroductionPage() {
       <div className="divide-y rounded-xl border">
         {[
           ["Why copy-paste instead of an npm package?", "Because the moment you need to tweak a component, a package becomes a fight. Here the code is yours from day one."],
-          ["Does it work with shadcn/ui?", "Yes. Plum UI uses the same token names and file conventions, so components from both can live side by side, and the shadcn CLI installs Plum components directly."],
+          ["Do I need another UI kit?", "No. Plum UI is complete on its own: its CLI, registry, theme and components have no dependency on any other kit. If your project already uses shadcn/ui, the token names match and its CLI can install Plum components too."],
           ["Which frameworks are supported?", "Anything that runs React 19 and Tailwind CSS v4: Next.js, Vite, Remix, Astro islands, TanStack Start."],
           ["What about bundle size?", "You only ship what you copy. Motion is tree-shaken, and many animations are pure CSS driven by Radix data attributes."],
         ].map(([q, a]) => (
