@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/spinner/default"
 import Sizes from "../demos/spinner/sizes"
 import Inline from "../demos/spinner/inline"
+import SpinnerPlayground from "../playgrounds/spinner"
 
 export const doc: ComponentDoc = {
   slug: "spinner",
@@ -14,6 +15,7 @@ export const doc: ComponentDoc = {
     { name: "sizes", title: "Sizes & color", description: "Size tokens, or any `size-*` and `text-*` class.", component: Sizes },
     { name: "inline", title: "Inline", component: Inline },
   ],
+  playground: SpinnerPlayground,
   usage: {
     imports: `import { Spinner } from "@/components/ui/spinner"`,
     code: `<Spinner variant="bars" />`,
