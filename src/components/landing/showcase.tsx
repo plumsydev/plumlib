@@ -53,7 +53,7 @@ function DeployTile() {
     setDeploying(true)
     // fausse promesse qui réussit 4 fois sur 5, faut bien montrer l'erreur aussi
     const run = new Promise<string>((resolve, reject) =>
-      setTimeout(() => (Math.random() > 0.2 ? resolve("plum-ui.vercel.app") : reject(new Error("Build failed"))), 2000)
+      setTimeout(() => (Math.random() > 0.2 ? resolve("production.infraflow.app") : reject(new Error("Build failed"))), 2000)
     )
     toast.promise(run, {
       loading: "Deploying to production…",
@@ -211,6 +211,7 @@ function VerifyTile() {
       <TileTitle>Two-factor</TileTitle>
       <p className="mb-4 text-xs text-muted-foreground">Enter the code from your authenticator app.</p>
       <InputOTP
+        containerClassName="w-full"
         maxLength={6}
         value={code}
         onChange={setCode}
@@ -219,9 +220,9 @@ function VerifyTile() {
           setTimeout(() => setCode(""), 900)
         }}
       >
-        <InputOTPGroup>
+        <InputOTPGroup className="w-full">
           {Array.from({ length: 6 }, (_, i) => (
-            <InputOTPSlot key={i} index={i} className="size-9" />
+            <InputOTPSlot key={i} index={i} className="h-10 w-auto min-w-0 flex-1" />
           ))}
         </InputOTPGroup>
       </InputOTP>
@@ -307,19 +308,113 @@ function AppearanceTile() {
   )
 }
 
+const hues = [
+  { name: "Plum", hue: 330 },
+  { name: "Ocean", hue: 250 },
+  { name: "Mint", hue: 165 },
+  { name: "Amber", hue: 65 },
+  { name: "Mono", hue: null },
+]
+
+function ShowcaseToolbar({
+  hue,
+  setHue,
+  radius,
+  setRadius,
+  mode,
+  setMode,
+}: {
+  hue: number | null
+  setHue: (h: number | null) => void
+  radius: string
+  setRadius: (r: string) => void
+  mode: string
+  setMode: (m: string) => void
+}) {
+  return (
+    <div className="mx-auto mb-4 flex w-fit flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-xl border bg-background/70 px-3 py-2 shadow-xs backdrop-blur">
+      <div className="flex items-center gap-1" role="radiogroup" aria-label="Accent">
+        {hues.map((h) => {
+          const active = hue === h.hue
+          return (
+            <button
+              key={h.name}
+              role="radio"
+              aria-checked={active}
+              aria-label={h.name}
+              onClick={() => setHue(h.hue)}
+              className="relative flex size-7 cursor-pointer items-center justify-center rounded-full"
+            >
+              {active && (
+                <motion.span layoutId="showcase-hue" className="absolute inset-0 rounded-full border border-foreground/25" transition={{ type: "spring", stiffness: 500, damping: 32 }} />
+              )}
+              <span
+                className="size-4 rounded-full shadow-xs ring-1 ring-foreground/10 transition-transform duration-300 ease-spring hover:scale-110"
+                style={{ background: h.hue === null ? "var(--foreground)" : `oklch(0.6 0.19 ${h.hue})` }}
+              />
+            </button>
+          )
+        })}
+      </div>
+      <div className="h-5 w-px bg-border" />
+      <ToggleGroup type="single" size="sm" variant="ghost" value={radius} onValueChange={(v) => v && setRadius(v)} aria-label="Radius">
+        {["0", "0.375", "0.625", "1"].map((r) => (
+          <ToggleGroupItem key={r} value={r} className="font-mono text-[11px]" aria-label={`Radius ${r}rem`}>
+            <span className="size-3 border-t-2 border-l-2 border-current" style={{ borderTopLeftRadius: `${Number(r) * 8}px` }} />
+          </ToggleGroupItem>
+        ))}
+      </ToggleGroup>
+      <div className="h-5 w-px bg-border" />
+      <ToggleGroup type="single" size="sm" variant="ghost" value={mode} onValueChange={(v) => v && setMode(v)} aria-label="Mode">
+        <ToggleGroupItem value="auto" aria-label="Follow site"><Monitor /></ToggleGroupItem>
+        <ToggleGroupItem value="light" aria-label="Light"><Sun /></ToggleGroupItem>
+        <ToggleGroupItem value="dark" aria-label="Dark"><Moon /></ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+  )
+}
+
 export function Showcase() {
+  const [hue, setHue] = React.useState<number | null>(330)
+  const [radius, setRadius] = React.useState("0.625")
+  const [mode, setMode] = React.useState("auto")
+
+  // on rethème que la vitrine, le reste du site bouge pas
+  const vars: Record<string, string> = {
+    "--radius": `${radius}rem`,
+    ...(hue === null
+      ? { "--brand": "var(--foreground)", "--brand-foreground": "var(--background)", "--ring": "color-mix(in oklch, var(--foreground) 30%, transparent)" }
+      : {
+          "--brand": `oklch(0.6 0.19 ${hue})`,
+          "--primary": `oklch(0.58 0.19 ${hue})`,
+          "--primary-foreground": "oklch(0.99 0 0)",
+          "--ring": `oklch(0.6 0.19 ${hue} / 45%)`,
+        }),
+  }
+
   return (
     <section className="relative mx-auto max-w-6xl px-4 sm:px-6">
-      <div className="grid grid-cols-1 gap-3 lg:grid-cols-12">
-        <DeployTile />
-        <UsageTile />
-        <TeamTile />
-        <CommandTile />
-        <VerifyTile />
-        <ActivityTile />
-        <AppearanceTile />
+      <ShowcaseToolbar hue={hue} setHue={setHue} radius={radius} setRadius={setRadius} mode={mode} setMode={setMode} />
+      <div
+        style={vars as React.CSSProperties}
+        className={cn(
+          "rounded-3xl transition-[background-color,padding] duration-500 ease-out-expo",
+          mode !== "auto" && "bg-background p-3 text-foreground ring-1 ring-border",
+          mode === "dark" && "dark",
+          mode === "light" && "theme-light"
+        )}
+      >
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-12">
+          <DeployTile />
+          <UsageTile />
+          <TeamTile />
+          <CommandTile />
+          <VerifyTile />
+          <ActivityTile />
+          <AppearanceTile />
+        </div>
       </div>
-      <p className="mt-5 text-center text-xs text-muted-foreground">Everything above is live. Click around.</p>
+      <p className="mt-5 text-center text-xs text-muted-foreground">Everything above is live. Change the accent, the radius or the mode — then click around.</p>
     </section>
   )
 }
