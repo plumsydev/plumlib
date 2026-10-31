@@ -4,7 +4,7 @@ import * as React from "react"
 import { Tabs as TabsPrimitive } from "radix-ui"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { easeOutExpo, spring } from "@/lib/motion"
+import { spring } from "@/lib/motion"
 
 type TabsVariant = "pill" | "underline"
 
@@ -100,11 +100,14 @@ function TabsTrigger({ className, children, value, ...props }: React.ComponentPr
 
 function TabsContent({ className, children, ...props }: React.ComponentProps<typeof TabsPrimitive.Content>) {
   return (
-    <TabsPrimitive.Content data-slot="tabs-content" className={cn("flex-1 outline-none", className)} {...props}>
+    // asChild => le motion.div EST le content, donc space-y grid gap etc s'appliquent direct aux enfants
+    <TabsPrimitive.Content asChild {...props}>
       <motion.div
-        initial={{ opacity: 0, y: 6, filter: "blur(4px)" }}
+        data-slot="tabs-content"
+        initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.45, ease: easeOutExpo }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className={cn("flex-1 outline-none", className)}
       >
         {children}
       </motion.div>
