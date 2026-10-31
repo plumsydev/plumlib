@@ -88,7 +88,7 @@ function ToggleGroupItem({
       value={value}
       className={cn(
         "relative inline-flex h-(--item-h) min-w-(--item-h) shrink-0 cursor-pointer select-none items-center justify-center gap-1.5 rounded-md px-2.5 font-medium",
-        "text-muted-foreground transition-[color,transform] duration-200 ease-out-quart outline-none",
+        "text-muted-foreground transition-[color,scale] duration-200 ease-out-quart outline-none",
         "hover:text-foreground active:scale-[0.96] data-[state=on]:text-foreground",
         "focus-visible:ring-[3px] focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
