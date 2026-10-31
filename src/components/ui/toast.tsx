@@ -13,6 +13,12 @@ type ToastOptions = {
   id?: ToastId
   description?: React.ReactNode
   action?: { label: string; onClick: () => void }
+  cancel?: { label: string; onClick?: () => void }
+  /** remplace l'icone du type */
+  icon?: React.ReactNode
+  closeButton?: boolean
+  /** cible un <Toaster id="..."> précis qd y en a plusieurs */
+  toasterId?: string
   /** ms avant fermeture, Infinity pr la garder */
   duration?: number
   dismissible?: boolean
@@ -113,16 +119,27 @@ function Toaster({
   visibleToasts = 3,
   duration = 4000,
   closeButton = false,
+  richColors = false,
+  expand = false,
+  id,
   className,
 }: {
+  /** n'affiche que les toasts envoyés avec ce toasterId */
+  id?: string
   position?: Position
   visibleToasts?: number
   duration?: number
   closeButton?: boolean
+  /** fond teinté selon le type */
+  richColors?: boolean
+  /** toujours étalé, pas de pile */
+  expand?: boolean
   className?: string
 }) {
-  const items = useToasts()
-  const [expanded, setExpanded] = React.useState(false)
+  const all = useToasts()
+  const items = React.useMemo(() => all.filter((t) => t.toasterId === id), [all, id])
+  const [hovered, setExpanded] = React.useState(false)
+  const expanded = expand || hovered
   const [heights, setHeights] = React.useState<Record<ToastId, number>>({})
   const isTop = position.startsWith("top")
   const dir = isTop ? 1 : -1
@@ -175,7 +192,8 @@ function Toaster({
                 y={(expanded ? offset : index * PEEK) * dir}
                 frontHeight={frontHeight}
                 defaultDuration={duration}
-                closeButton={closeButton}
+                closeButton={t.closeButton ?? closeButton}
+                richColors={richColors}
                 onHeight={setHeight}
               />
             )
@@ -199,6 +217,16 @@ const icons: Record<Exclude<ToastType, "default">, React.ReactNode> = {
   ),
 }
 
+// fonds opaques sinon les cartes empilées se voient à travers
+const richClasses: Record<ToastType, string> = {
+  default: "",
+  loading: "",
+  success: "border-success/30 bg-[color-mix(in_oklch,var(--success)_10%,var(--popover))] [&_[data-title]]:text-success",
+  error: "border-destructive/30 bg-[color-mix(in_oklch,var(--destructive)_10%,var(--popover))] [&_[data-title]]:text-destructive",
+  info: "border-info/30 bg-[color-mix(in_oklch,var(--info)_10%,var(--popover))] [&_[data-title]]:text-info",
+  warning: "border-warning/35 bg-[color-mix(in_oklch,var(--warning)_12%,var(--popover))] [&_[data-title]]:text-warning",
+}
+
 function ToastItem({
   toast: t,
   index,
@@ -209,6 +237,7 @@ function ToastItem({
   frontHeight,
   defaultDuration,
   closeButton,
+  richColors,
   onHeight,
 }: {
   toast: ToastData
@@ -220,6 +249,7 @@ function ToastItem({
   frontHeight: number
   defaultDuration: number
   closeButton: boolean
+  richColors: boolean
   onHeight: (id: ToastId, h: number) => void
 }) {
   const contentRef = React.useRef<HTMLDivElement>(null)
@@ -291,6 +321,7 @@ function ToastItem({
       style={{ zIndex: 100 - index, transformOrigin: isTop ? "bottom center" : "top center" }}
       className={cn(
         "group/toast absolute inset-x-0 cursor-grab touch-pan-y overflow-hidden rounded-xl border bg-popover text-popover-foreground shadow-lg active:cursor-grabbing",
+        richColors && richClasses[t.type],
         isTop ? "top-0" : "bottom-0",
         !visible && "pointer-events-none"
       )}
@@ -305,23 +336,35 @@ function ToastItem({
         )}
       >
         <AnimatePresence mode="popLayout" initial={false}>
-          {t.type !== "default" && (
+          {(t.icon || t.type !== "default") && (
             <motion.span
-              key={t.type}
+              key={t.icon ? "custom" : t.type}
               initial={{ opacity: 0, scale: 0.5, filter: "blur(4px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, scale: 0.5, filter: "blur(4px)" }}
               transition={spring.bouncy}
               className="mt-0.5 flex shrink-0"
             >
-              {icons[t.type]}
+              {t.icon ?? icons[t.type as Exclude<ToastType, "default">]}
             </motion.span>
           )}
         </AnimatePresence>
         <div className="min-w-0 flex-1">
-          <div className="text-sm font-medium leading-5">{t.title}</div>
+          <div data-title className="text-sm leading-5 font-medium">{t.title}</div>
           {t.description && <div className="mt-0.5 text-[0.8125rem] leading-5 text-muted-foreground">{t.description}</div>}
         </div>
+        {t.cancel && (
+          <button
+            type="button"
+            onClick={() => {
+              t.cancel?.onClick?.()
+              dismiss(t.id)
+            }}
+            className="h-7 shrink-0 cursor-pointer rounded-md px-2.5 text-xs font-medium text-muted-foreground transition-[background-color,color,transform,translate,scale,rotate] hover:bg-accent hover:text-foreground active:scale-95"
+          >
+            {t.cancel.label}
+          </button>
+        )}
         {t.action && (
           <button
             type="button"
@@ -329,7 +372,7 @@ function ToastItem({
               t.action?.onClick()
               dismiss(t.id)
             }}
-            className="h-7 shrink-0 cursor-pointer rounded-md bg-primary px-2.5 text-xs font-medium text-primary-foreground transition-[background-color,transform] hover:bg-primary/88 active:scale-95"
+            className="h-7 shrink-0 cursor-pointer rounded-md bg-primary px-2.5 text-xs font-medium text-primary-foreground transition-[background-color,transform,translate,scale,rotate] hover:bg-primary/88 active:scale-95"
           >
             {t.action.label}
           </button>
