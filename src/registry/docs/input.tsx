@@ -3,6 +3,7 @@ import Default from "../demos/input/default"
 import WithIcons from "../demos/input/with-icons"
 import Sizes from "../demos/input/sizes"
 import States from "../demos/input/states"
+import Playground from "../playgrounds/input"
 
 export const doc: ComponentDoc = {
   slug: "input",
@@ -22,6 +23,7 @@ export const doc: ComponentDoc = {
     { name: "sizes", title: "Sizes", component: Sizes },
     { name: "states", title: "States", description: "Invalid, disabled and file inputs.", component: States },
   ],
+  playground: Playground,
   usage: {
     imports: `import { Input, InputAddon, InputGroup } from "@/components/ui/input"`,
     code: `<InputGroup>
