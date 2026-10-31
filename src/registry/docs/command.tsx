@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/command/default"
 import DialogDemo from "../demos/command/dialog"
+import Pages from "../demos/command/pages"
+import CommandPlayground from "../playgrounds/command"
 
 export const doc: ComponentDoc = {
   slug: "command",
@@ -18,7 +20,14 @@ export const doc: ComponentDoc = {
       description: "`CommandDialog` wraps the menu in a dialog anchored near the top of the screen. Try ⌘J.",
       component: DialogDemo,
     },
+    {
+      name: "pages",
+      title: "Nested pages",
+      description: "Drill into sub-pages with breadcrumbs. Backspace on an empty input goes back.",
+      component: Pages,
+    },
   ],
+  playground: CommandPlayground,
   usage: {
     imports: `import {
   Command,
