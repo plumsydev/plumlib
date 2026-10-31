@@ -57,7 +57,7 @@ export default function ThemingPage() {
     >
       <DocsHeader
         title="Theming"
-        description="Everything is driven by CSS variables in OKLCH. Same token names as shadcn/ui, plus brand, status colors and motion curves."
+        description="Everything is driven by CSS variables in OKLCH. Surfaces, actions, status colors, a brand accent and motion curves — all in one file."
       />
 
       <H2 id="playground">Playground</H2>
