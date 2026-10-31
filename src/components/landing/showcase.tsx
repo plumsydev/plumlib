@@ -331,13 +331,26 @@ function ShowcaseToolbar({
   mode: string
   setMode: (m: string) => void
 }) {
+  // arrive juste après le hero, puis les pastilles tombent une par une
+  const pop = (i: number) => ({
+    initial: { opacity: 0, scale: 0.4 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { type: "spring" as const, stiffness: 520, damping: 22, delay: 0.95 + i * 0.05 },
+  })
+
   return (
-    <div className="mx-auto mb-4 flex w-fit flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-xl border bg-background/70 px-3 py-2 shadow-xs backdrop-blur">
+    <motion.div
+      initial={{ opacity: 0, y: 14, scale: 0.97, filter: "blur(6px)" }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      transition={{ duration: 0.8, delay: 0.75, ease: easeOutExpo }}
+      className="mx-auto mb-4 flex w-fit flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-xl border bg-background/70 px-3 py-2 shadow-xs backdrop-blur"
+    >
       <div className="flex items-center gap-1" role="radiogroup" aria-label="Accent">
-        {hues.map((h) => {
+        {hues.map((h, i) => {
           const active = hue === h.hue
           return (
-            <button
+            <motion.button
+              {...pop(i)}
               key={h.name}
               role="radio"
               aria-checked={active}
@@ -352,25 +365,29 @@ function ShowcaseToolbar({
                 className="size-4 rounded-full shadow-xs ring-1 ring-foreground/10 transition-transform duration-300 ease-spring hover:scale-110"
                 style={{ background: h.hue === null ? "var(--foreground)" : `oklch(0.6 0.19 ${h.hue})` }}
               />
-            </button>
+            </motion.button>
           )
         })}
       </div>
-      <div className="h-5 w-px bg-border" />
-      <ToggleGroup type="single" size="sm" variant="ghost" value={radius} onValueChange={(v) => v && setRadius(v)} aria-label="Radius">
-        {["0", "0.375", "0.625", "1"].map((r) => (
-          <ToggleGroupItem key={r} value={r} className="font-mono text-[11px]" aria-label={`Radius ${r}rem`}>
-            <span className="size-3 border-t-2 border-l-2 border-current" style={{ borderTopLeftRadius: `${Number(r) * 8}px` }} />
-          </ToggleGroupItem>
-        ))}
-      </ToggleGroup>
-      <div className="h-5 w-px bg-border" />
-      <ToggleGroup type="single" size="sm" variant="ghost" value={mode} onValueChange={(v) => v && setMode(v)} aria-label="Mode">
-        <ToggleGroupItem value="auto" aria-label="Follow site"><Monitor /></ToggleGroupItem>
-        <ToggleGroupItem value="light" aria-label="Light"><Sun /></ToggleGroupItem>
-        <ToggleGroupItem value="dark" aria-label="Dark"><Moon /></ToggleGroupItem>
-      </ToggleGroup>
-    </div>
+      <motion.div {...pop(hues.length)} className="h-5 w-px bg-border" />
+      <motion.div {...pop(hues.length + 1)}>
+        <ToggleGroup type="single" size="sm" variant="ghost" value={radius} onValueChange={(v) => v && setRadius(v)} aria-label="Radius">
+          {["0", "0.375", "0.625", "1"].map((r) => (
+            <ToggleGroupItem key={r} value={r} className="font-mono text-[11px]" aria-label={`Radius ${r}rem`}>
+              <span className="size-3 border-t-2 border-l-2 border-current" style={{ borderTopLeftRadius: `${Number(r) * 8}px` }} />
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
+      </motion.div>
+      <motion.div {...pop(hues.length + 2)} className="h-5 w-px bg-border" />
+      <motion.div {...pop(hues.length + 3)}>
+        <ToggleGroup type="single" size="sm" variant="ghost" value={mode} onValueChange={(v) => v && setMode(v)} aria-label="Mode">
+          <ToggleGroupItem value="auto" aria-label="Follow site"><Monitor /></ToggleGroupItem>
+          <ToggleGroupItem value="light" aria-label="Light"><Sun /></ToggleGroupItem>
+          <ToggleGroupItem value="dark" aria-label="Dark"><Moon /></ToggleGroupItem>
+        </ToggleGroup>
+      </motion.div>
+    </motion.div>
   )
 }
 
