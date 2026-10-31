@@ -1,5 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/context-menu/default"
+import Files from "../demos/context-menu/files"
+import Canvas from "../demos/context-menu/canvas"
+import ContextMenuPlayground from "../playgrounds/context-menu"
 
 export const doc: ComponentDoc = {
   slug: "context-menu",
@@ -7,8 +10,23 @@ export const doc: ComponentDoc = {
   description: "A menu that opens at the pointer on right click or long press. Same items and keyboard model as the dropdown.",
   category: "Overlays",
   primitive: { name: "Radix Context Menu", href: "https://www.radix-ui.com/primitives/docs/components/context-menu" },
-  dependencies: ["radix-ui", "lucide-react"],
-  demos: [{ name: "default", component: Default }],
+  dependencies: ["radix-ui", "lucide-react", "motion"],
+  demos: [
+    { name: "default", component: Default },
+    {
+      name: "files",
+      title: "File browser",
+      description: "Right click a file to rename, duplicate, star or delete it — with undo.",
+      component: Files,
+    },
+    {
+      name: "canvas",
+      title: "Canvas",
+      description: "Checkbox and radio items that drive a canvas: grid, rulers and zoom.",
+      component: Canvas,
+    },
+  ],
+  playground: ContextMenuPlayground,
   usage: {
     imports: `import {
   ContextMenu,
