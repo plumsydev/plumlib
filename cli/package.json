@@ -1,5 +1,5 @@
 {
-  "name": "plum-ui",
+  "name": "@plumsydev/plum-ui",
   "version": "0.1.0",
   "description": "Add Plum UI components to your project.",
   "type": "module",
