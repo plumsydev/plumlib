@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/collapsible/default"
 import Details from "../demos/collapsible/details"
+import CollapsiblePlayground from "../playgrounds/collapsible"
+import SidebarDemo from "../demos/collapsible/sidebar"
 
 export const doc: ComponentDoc = {
   slug: "collapsible",
@@ -12,7 +14,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "details", title: "Disclosure", description: "A rotating chevron driven by `data-state`.", component: Details },
+    { name: "sidebar", title: "Sidebar", description: "Collapsible groups make a compact, nested navigation.", component: SidebarDemo },
   ],
+  playground: CollapsiblePlayground,
   usage: {
     imports: `import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"`,
     code: `<Collapsible>
