@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import { siteConfig } from "@/lib/site"
 import { spring } from "@/lib/motion"
 import { Button } from "@/components/ui/button"
-import { Logo } from "./logo"
+import { Wordmark } from "./logo"
 import { ThemeToggle } from "./theme-toggle"
 import { CommandMenu } from "./command-menu"
 import { MobileNav } from "./mobile-nav"
@@ -18,6 +18,7 @@ import type { NavGroup } from "@/registry/nav-types"
 const links = [
   { title: "Docs", href: "/docs", match: (p: string) => p === "/docs" || p.startsWith("/docs/installation") },
   { title: "Components", href: "/docs/components/button", match: (p: string) => p.startsWith("/docs/components") },
+  { title: "Blocks", href: "/blocks", match: (p: string) => p.startsWith("/blocks") },
   { title: "Theming", href: "/docs/theming", match: (p: string) => p.startsWith("/docs/theming") },
   { title: "Motion", href: "/docs/motion", match: (p: string) => p.startsWith("/docs/motion") },
 ]
@@ -37,9 +38,8 @@ export function SiteHeader({ nav }: { nav: NavGroup[] }) {
     >
       <div className="mx-auto flex h-full max-w-[1400px] items-center gap-4 px-4 sm:px-6">
         <MobileNav nav={nav} />
-        <Link href="/" className="group flex items-center gap-2 font-semibold tracking-tight">
-          <Logo className="transition-transform duration-500 ease-spring group-hover:-rotate-12" />
-          <span>{siteConfig.name}</span>
+        <Link href="/" aria-label={siteConfig.name}>
+          <Wordmark />
         </Link>
 
         <nav className="ml-4 hidden items-center md:flex" onMouseLeave={() => setHovered(null)}>
