@@ -7,7 +7,7 @@ import { spring } from "@/lib/motion"
 import { BorderBeam } from "@/components/ui/border-beam"
 import { Reveal } from "./reveal"
 
-const command = "npx plum-ui add dialog"
+const command = "npx @plumsydev/plum-ui add dialog"
 const output = [
   { text: "Resolving dialog, button", delay: 300 },
   { text: "Installed radix-ui, motion", delay: 700 },
