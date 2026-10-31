@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/alert/default"
 import Variants from "../demos/alert/variants"
 import Dismissible from "../demos/alert/dismissible"
+import AlertPlayground from "../playgrounds/alert"
 
 export const doc: ComponentDoc = {
   slug: "alert",
@@ -14,6 +15,7 @@ export const doc: ComponentDoc = {
     { name: "variants", title: "Variants", component: Variants },
     { name: "dismissible", title: "Dismissible", description: "Add an `AlertAction` and animate it out with `AnimatePresence`.", component: Dismissible },
   ],
+  playground: AlertPlayground,
   usage: {
     imports: `import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"`,
     code: `<Alert variant="success">
