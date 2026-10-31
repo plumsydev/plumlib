@@ -8,14 +8,14 @@ import { cn } from "@/lib/utils"
 const toggleVariants = cva(
   [
     "inline-flex shrink-0 cursor-pointer select-none items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium",
-    "transition-[background-color,color,box-shadow,transform] duration-200 ease-out-quart outline-none",
+    "transition-[background-color,color,box-shadow,scale] duration-200 ease-out-quart outline-none",
     "hover:bg-muted hover:text-foreground active:scale-[0.95] active:duration-75",
     "data-[state=on]:bg-accent data-[state=on]:text-accent-foreground",
     "focus-visible:ring-[3px] focus-visible:ring-ring",
     "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-    "[&_svg]:transition-transform [&_svg]:duration-300 [&_svg]:ease-spring data-[state=on]:[&_svg]:scale-110",
+    "[&_svg]:transition-[scale] [&_svg]:duration-300 [&_svg]:ease-spring data-[state=on]:[&_svg]:scale-110",
   ],
   {
     variants: {
