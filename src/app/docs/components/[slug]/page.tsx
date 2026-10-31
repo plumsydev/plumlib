@@ -94,7 +94,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
           <TabsTrigger value="shadcn">shadcn CLI</TabsTrigger>
         </TabsList>
         <TabsContent value="cli" className="pt-2">
-          <CodeBlock lang="bash" code={`npx plum-ui add ${slug}`} />
+          <CodeBlock lang="bash" code={`npx @plumsydev/plum-ui add ${slug}`} />
           {doc.registryDependencies?.length ? (
             <P className="text-sm text-muted-foreground">
               Also pulls in{" "}
