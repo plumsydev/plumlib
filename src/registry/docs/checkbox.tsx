@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/checkbox/default"
 import Indeterminate from "../demos/checkbox/indeterminate"
 import Card from "../demos/checkbox/card"
+import Playground from "../playgrounds/checkbox"
 
 export const doc: ComponentDoc = {
   slug: "checkbox",
@@ -21,6 +22,7 @@ export const doc: ComponentDoc = {
     },
     { name: "card", title: "Card", description: "Wrap it in a Label and style with `has-[[data-state=checked]]`.", component: Card },
   ],
+  playground: Playground,
   usage: {
     imports: `import { Checkbox } from "@/components/ui/checkbox"`,
     code: `<Checkbox id="terms" />`,
