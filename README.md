@@ -3,8 +3,8 @@
 Animated, accessible React components you copy into your app. Built on Radix, Tailwind CSS v4 and Motion, installed with its own zero-dependency CLI.
 
 ```bash
-npx plumui init
-npx plumui add button dialog toast
+npx plum-ui init
+npx plum-ui add button dialog toast
 ```
 
 - 70+ components across inputs, overlays, feedback, navigation, data display and motion effects
@@ -32,7 +32,7 @@ Open http://localhost:3000. The landing page lives in `src/app/page.tsx`, the do
 | `src/registry/demos` | Live examples, shown with their source in the docs |
 | `src/registry/playgrounds` | Interactive prop playgrounds |
 | `src/blocks` | Full-screen examples shown on /blocks |
-| `cli/` | The `plumui` CLI (published separately) |
+| `cli/` | The `plum-ui` CLI (published separately) |
 | `scripts/build-registry.mjs` | Generates `public/registry` (plum) and `public/r` (shadcn mirror) |
 
 ## Adding a component
@@ -52,13 +52,13 @@ The docs page, sidebar entry, search result and registry item are generated from
 NEXT_PUBLIC_SITE_URL=https://ui.example.com pnpm build
 ```
 
-The CLI reads `<site>/registry/<name>.json`. Its default registry is set at the top of `cli/bin/plumui.mjs` and can be overridden with `--registry` or `PLUM_REGISTRY`. To try it against your dev server:
+The CLI reads `<site>/registry/<name>.json`. Its default registry is set at the top of `cli/bin/plum-ui.mjs` and can be overridden with `--registry` or `PLUM_REGISTRY`. To try it against your dev server:
 
 ```bash
-node cli/bin/plumui.mjs init --registry http://localhost:3000/registry
+node cli/bin/plum-ui.mjs init --registry http://localhost:3000/registry
 ```
 
-Publish the CLI with `cd cli && npm publish`.
+Publish the CLI with `pnpm cli:publish` (bump `cli/package.json` first).
 
 ## License
 
