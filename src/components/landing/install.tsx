@@ -4,13 +4,14 @@ import * as React from "react"
 import { AnimatePresence, motion, useInView } from "motion/react"
 import { Check, FileCode2 } from "lucide-react"
 import { spring } from "@/lib/motion"
+import { BorderBeam } from "@/components/ui/border-beam"
 import { Reveal } from "./reveal"
 
-const command = "npx shadcn@latest add @plum/dialog"
+const command = "npx plumui add dialog"
 const output = [
-  { text: "Checking registry.", delay: 300 },
-  { text: "Installing dependencies.", delay: 700 },
-  { text: "Created 2 files:", delay: 500 },
+  { text: "Resolving dialog, button", delay: 300 },
+  { text: "Installed radix-ui, motion", delay: 700 },
+  { text: "Added 2 files", delay: 500 },
 ]
 const files = ["components/ui/dialog.tsx", "components/ui/button.tsx"]
 
@@ -43,11 +44,11 @@ export function Install() {
           <span className="text-muted-foreground">Zero lock-in.</span>
         </h2>
         <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
-          Plum UI speaks the shadcn registry format. The CLI you already use drops the source into your project,
-          installs dependencies and resolves the components it builds on.
+          The plumui CLI drops the source into your project, rewrites imports to your aliases, installs what&apos;s
+          missing with your package manager and pulls in the components it builds on.
         </p>
         <ul className="mt-6 space-y-2.5 text-sm">
-          {["Works with Next.js, Vite, Remix and Astro", "Mix freely with shadcn/ui components", "TypeScript, React 19, Tailwind v4"].map((item) => (
+          {["Works with Next.js, Vite, React Router and Astro", "Zero-dependency CLI, works with npm, pnpm, yarn and bun", "TypeScript, React 19, Tailwind v4"].map((item) => (
             <li key={item} className="flex items-center gap-2.5">
               <span className="flex size-5 items-center justify-center rounded-full bg-success/12 text-success">
                 <Check className="size-3" />
@@ -59,7 +60,8 @@ export function Install() {
       </Reveal>
 
       <Reveal delay={0.1}>
-        <div ref={ref} className="overflow-hidden rounded-2xl border bg-card shadow-xl">
+        <div ref={ref} className="relative overflow-hidden rounded-2xl border bg-card shadow-xl">
+          <BorderBeam size={120} duration={8} />
           <div className="flex h-10 items-center gap-1.5 border-b px-4">
             <span className="size-2.5 rounded-full bg-foreground/10" />
             <span className="size-2.5 rounded-full bg-foreground/10" />
