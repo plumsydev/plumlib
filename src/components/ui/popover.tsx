@@ -24,8 +24,10 @@ function PopoverContent({
   className,
   align = "center",
   sideOffset = 6,
+  showArrow = false,
+  children,
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Content>) {
+}: React.ComponentProps<typeof PopoverPrimitive.Content> & { showArrow?: boolean }) {
   return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
@@ -37,7 +39,17 @@ function PopoverContent({
           className
         )}
         {...props}
-      />
+      >
+        {children}
+        {showArrow && (
+          // flèche en 2 couches pr avoir la bordure autour, sinon elle flotte
+          <PopoverPrimitive.Arrow asChild width={14} height={7}>
+            <svg viewBox="0 0 14 7" className="-mt-px block fill-popover stroke-border" aria-hidden>
+              <path d="M0 0.5 L7 6.5 L14 0.5" strokeWidth={1} />
+            </svg>
+          </PopoverPrimitive.Arrow>
+        )}
+      </PopoverPrimitive.Content>
     </PopoverPrimitive.Portal>
   )
 }
