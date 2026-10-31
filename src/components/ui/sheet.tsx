@@ -38,14 +38,24 @@ const sideClasses = {
   bottom: "inset-x-0 bottom-0 h-auto border-t",
 } as const
 
+// version flottante, décollée du bord avec des coins arrondis façon vercel
+const insetClasses = {
+  right: "inset-y-2 right-2 h-auto w-[calc(75%-1rem)] rounded-xl border sm:max-w-sm",
+  left: "inset-y-2 left-2 h-auto w-[calc(75%-1rem)] rounded-xl border sm:max-w-sm",
+  top: "inset-x-2 top-2 h-auto rounded-xl border",
+  bottom: "inset-x-2 bottom-2 h-auto rounded-xl border",
+} as const
+
 function SheetContent({
   className,
   children,
   side = "right",
+  inset = false,
   showCloseButton = true,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: keyof typeof sideClasses
+  inset?: boolean
   showCloseButton?: boolean
 }) {
   return (
@@ -54,9 +64,12 @@ function SheetContent({
       <SheetPrimitive.Content
         data-slot="sheet-content"
         data-side={side}
+        data-inset={inset || undefined}
         className={cn(
           "pl-slide fixed z-50 flex flex-col gap-4 bg-popover text-popover-foreground shadow-xl outline-none",
-          sideClasses[side],
+          // en mode inset on glisse un poil plus loin pr sortir aussi la marge
+          "data-[inset]:data-[side=right]:[--pl-sx:calc(100%+1rem)] data-[inset]:data-[side=left]:[--pl-sx:calc(-100%-1rem)] data-[inset]:data-[side=top]:[--pl-sy:calc(-100%-1rem)] data-[inset]:data-[side=bottom]:[--pl-sy:calc(100%+1rem)]",
+          inset ? insetClasses[side] : sideClasses[side],
           className
         )}
         {...props}
@@ -66,7 +79,7 @@ function SheetContent({
           <SheetPrimitive.Close
             className={cn(
               "absolute right-4 top-4 inline-flex size-7 cursor-pointer items-center justify-center rounded-md text-muted-foreground",
-              "transition-[color,background-color,transform] duration-200 hover:bg-accent hover:text-foreground active:scale-90",
+              "transition-[color,background-color,transform,translate,scale,rotate] duration-200 hover:bg-accent hover:text-foreground active:scale-90",
               "outline-none focus-visible:ring-[3px] focus-visible:ring-ring [&_svg]:size-4"
             )}
           >
@@ -77,6 +90,10 @@ function SheetContent({
       </SheetPrimitive.Content>
     </SheetPortal>
   )
+}
+
+function SheetBody({ className, ...props }: React.ComponentProps<"div">) {
+  return <div data-slot="sheet-body" className={cn("flex-1 overflow-y-auto px-6 [scrollbar-width:thin]", className)} {...props} />
 }
 
 function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
@@ -107,4 +124,4 @@ function SheetDescription({ className, ...props }: React.ComponentProps<typeof S
   )
 }
 
-export { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger }
+export { Sheet, SheetBody, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger }
