@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/field/default"
 import Validation from "../demos/field/validation"
 import Horizontal from "../demos/field/horizontal"
+import Playground from "../playgrounds/field"
 
 export const doc: ComponentDoc = {
   slug: "field",
@@ -21,6 +22,7 @@ export const doc: ComponentDoc = {
     },
     { name: "horizontal", title: "Horizontal", description: "Use `orientation=\"horizontal\"` for settings rows.", component: Horizontal },
   ],
+  playground: Playground,
   usage: {
     imports: `import {
   Field,
