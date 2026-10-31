@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/table/default"
 import Selectable from "../demos/table/selectable"
 import Sortable from "../demos/table/sortable"
+import TablePlayground from "../playgrounds/table"
 
 export const doc: ComponentDoc = {
   slug: "table",
@@ -14,6 +15,7 @@ export const doc: ComponentDoc = {
     { name: "selectable", title: "Selectable rows", description: "Set `data-state=\"selected\"` on a row to highlight it and grow the accent bar.", component: Selectable },
     { name: "sortable", title: "Animated sorting", description: "Wrap rows with `motion.create(TableRow)` and `layout` to animate reordering.", component: Sortable },
   ],
+  playground: TablePlayground,
   usage: {
     imports: `import {
   Table,
