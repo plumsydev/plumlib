@@ -54,7 +54,7 @@ export default function IntroductionPage() {
 
       <P className="mt-8">
         This is not a component library you depend on. It&apos;s a collection of well-made pieces you take ownership of.
-        Run <code className="font-mono text-[0.9em]">npx plum-ui add</code>, and the component lands in your repo as a
+        Run <code className="font-mono text-[0.9em]">npx @plumsydev/plum-ui add</code>, and the component lands in your repo as a
         readable file. Every piece is animated by design, keyboard accessible, themed by a single CSS file — and
         yours to change.
       </P>
