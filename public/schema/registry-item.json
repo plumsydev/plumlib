@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Plum UI registry item",
+  "type": "object",
+  "required": ["name", "type", "files"],
+  "properties": {
+    "name": { "type": "string" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "category": { "type": "string" },
+    "type": { "enum": ["ui", "lib", "style"] },
+    "dependencies": { "type": "array", "items": { "type": "string" }, "description": "npm packages." },
+    "registryDependencies": { "type": "array", "items": { "type": "string" }, "description": "Other items from the same registry." },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "type", "content"],
+        "properties": {
+          "path": { "type": "string" },
+          "type": { "enum": ["ui", "lib", "style"] },
+          "content": { "type": "string" }
+        }
+      }
+    }
+  }
+}
