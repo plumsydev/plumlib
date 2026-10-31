@@ -89,7 +89,7 @@ const features = [
   { title: "You own the code", body: "No package to fight. Every component lands in your repo as a readable file you can bend to your needs.", visual: OwnIllustration },
   { title: "Motion with intent", body: "Springs for things you touch, expo curves for things that appear. Interruptible, fast, never in the way.", visual: MotionIllustration },
   { title: "Accessible to the core", body: "Radix handles focus, keyboard and ARIA. Reduced motion is respected everywhere, CSS and JS alike.", visual: A11yIllustration },
-  { title: "Themed in one line", body: "OKLCH tokens compatible with shadcn/ui. Swap the brand hue and every component follows, in light and dark.", visual: ThemeIllustration },
+  { title: "Themed in one line", body: "One CSS file of OKLCH tokens. Swap the brand hue and every component follows, in light and dark.", visual: ThemeIllustration },
 ]
 
 export function Features() {
