@@ -8,7 +8,7 @@ function Card({ className, interactive = false, ...props }: React.ComponentProps
       className={cn(
         "flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-xs",
         interactive &&
-          "transition-[transform,box-shadow,border-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:border-foreground/15 hover:shadow-lg",
+          "transition-[transform,translate,scale,rotate,box-shadow,border-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:border-foreground/15 hover:shadow-lg",
         className
       )}
       {...props}
