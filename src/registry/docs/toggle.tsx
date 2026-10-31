@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/toggle/default"
 import Outline from "../demos/toggle/outline"
+import Playground from "../playgrounds/toggle"
+import Bookmark from "../demos/toggle/bookmark"
 
 export const doc: ComponentDoc = {
   slug: "toggle",
@@ -12,7 +14,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "outline", title: "Outline", component: Outline },
+    { name: "bookmark", title: "Like & save", description: "Controlled toggles with custom pressed colors.", component: Bookmark },
   ],
+  playground: Playground,
   usage: {
     imports: `import { Toggle } from "@/components/ui/toggle"`,
     code: `<Toggle aria-label="Bold"><Bold /></Toggle>`,
