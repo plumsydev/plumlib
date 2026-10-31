@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/alert-dialog/default"
 import Destructive from "../demos/alert-dialog/destructive"
+import Async from "../demos/alert-dialog/async"
+import AlertDialogPlayground from "../playgrounds/alert-dialog"
 
 export const doc: ComponentDoc = {
   slug: "alert-dialog",
@@ -8,8 +10,8 @@ export const doc: ComponentDoc = {
   description: "A modal that interrupts the user to confirm an important action. It can't be dismissed by clicking outside.",
   category: "Overlays",
   primitive: { name: "Radix Alert Dialog", href: "https://www.radix-ui.com/primitives/docs/components/alert-dialog" },
-  dependencies: ["radix-ui"],
-  registryDependencies: ["button"],
+  dependencies: ["radix-ui", "motion"],
+  registryDependencies: ["button", "dialog"],
   demos: [
     { name: "default", component: Default },
     {
@@ -18,7 +20,14 @@ export const doc: ComponentDoc = {
       description: "Gate irreversible actions behind typing the resource name.",
       component: Destructive,
     },
+    {
+      name: "async",
+      title: "Async action",
+      description: "Keep the dialog open while the request runs. `AlertDialogMedia` pops in with a spring.",
+      component: Async,
+    },
   ],
+  playground: AlertDialogPlayground,
   usage: {
     imports: `import {
   AlertDialog,
@@ -61,10 +70,18 @@ export const doc: ComponentDoc = {
       props: [{ name: "variant", type: '"default" | "destructive" | "brand"', default: '"default"', description: "Button style of the confirm action." }],
     },
     {
+      component: "AlertDialogMedia",
+      description: "Optional icon above the title. Pops in with a spring right after the panel.",
+      props: [{ name: "variant", type: '"default" | "destructive" | "warning"', default: '"default"', description: "Tint of the icon circle." }],
+    },
+    {
       component: "AlertDialogCancel",
       description: "Closes the dialog. Receives focus when the dialog opens.",
       props: [],
     },
   ],
-  notes: ["Focus lands on the cancel button by default, so a stray Enter never confirms a destructive action."],
+  notes: [
+    "Focus lands on the cancel button by default, so a stray Enter never confirms a destructive action.",
+    "For async confirmations, control `open` and use a regular `Button` instead of `AlertDialogAction`, which closes immediately.",
+  ],
 }
