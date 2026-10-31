@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/tabs/default"
 import Underline from "../demos/tabs/underline"
 import Icons from "../demos/tabs/icons"
+import TabsPlayground from "../playgrounds/tabs"
 
 export const doc: ComponentDoc = {
   slug: "tabs",
@@ -15,6 +16,7 @@ export const doc: ComponentDoc = {
     { name: "underline", title: "Underline", description: "`variant=\"underline\"` on the list for page-level navigation.", component: Underline },
     { name: "icons", title: "With icons", component: Icons },
   ],
+  playground: TabsPlayground,
   usage: {
     imports: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"`,
     code: `<Tabs defaultValue="account">
