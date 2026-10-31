@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/separator/default"
 import Label from "../demos/separator/label"
+import SeparatorPlayground from "../playgrounds/separator"
+import ToolbarDemo from "../demos/separator/toolbar"
 
 export const doc: ComponentDoc = {
   slug: "separator",
@@ -12,7 +14,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "label", title: "With label", description: "Pass children to center a label between two lines.", component: Label },
+    { name: "toolbar", title: "In a toolbar", description: "Vertical separators group related controls.", component: ToolbarDemo },
   ],
+  playground: SeparatorPlayground,
   usage: {
     imports: `import { Separator } from "@/components/ui/separator"`,
     code: `<Separator />
