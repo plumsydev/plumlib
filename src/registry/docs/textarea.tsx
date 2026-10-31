@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/textarea/default"
 import AutoResize from "../demos/textarea/auto-resize"
 import WithCounter from "../demos/textarea/with-counter"
+import Playground from "../playgrounds/textarea"
 
 export const doc: ComponentDoc = {
   slug: "textarea",
@@ -19,6 +20,7 @@ export const doc: ComponentDoc = {
     { name: "with-counter", title: "With counter", component: WithCounter },
   ],
   registryDependencies: ["label"],
+  playground: Playground,
   usage: {
     imports: `import { Textarea } from "@/components/ui/textarea"`,
     code: `<Textarea autoResize placeholder="Write something…" />`,
