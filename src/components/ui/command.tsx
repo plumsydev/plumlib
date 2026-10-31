@@ -33,15 +33,16 @@ function CommandDialog({
 }) {
   return (
     <Dialog {...props}>
-      <DialogHeader className="sr-only">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
-      </DialogHeader>
       {/* conteneur fixe transparent pr que la palette reste collée en haut qd la liste rétrécit */}
       <DialogContent
         className="pointer-events-none h-[min(460px,75vh)] max-w-xl content-start gap-0 border-0 bg-transparent p-0 shadow-none"
         showCloseButton={showCloseButton}
       >
+        {/* le titre doit vivre ds le content sinon radix râle ds la console */}
+        <DialogHeader className="sr-only">
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
         <Command
           className={cn(
             "pointer-events-auto h-auto border shadow-xl [&_[cmdk-input-wrapper]]:h-12 [&_[cmdk-input]]:h-12",
