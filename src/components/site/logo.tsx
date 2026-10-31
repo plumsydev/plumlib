@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils"
 
 // une goutte : un cercle dont un coin est resté carré, simple et ça se reconnait à 16px
-export const LOGO_PATH = "M12 3h9v9a9 9 0 1 1-9-9Z"
+// décalé sur le centre de gravité, le coin carré tire la masse vers le haut droite
+export const LOGO_PATH = "M11.55 3.45h9v9a9 9 0 1 1-9-9Z"
 
 export function Logo({ className, interactive = true }: { className?: string; interactive?: boolean }) {
   return (
@@ -18,7 +19,7 @@ export function Logo({ className, interactive = true }: { className?: string; in
 export function Wordmark({ className }: { className?: string }) {
   return (
     <span className={cn("group inline-flex items-center gap-2 text-[15px] font-semibold tracking-[-0.02em]", className)}>
-      <Logo className="size-[18px]" />
+      <Logo className="size-[18px] -translate-y-[0.5px]" />
       <span>
         Plum<span className="ml-[0.2em] text-muted-foreground">UI</span>
       </span>
