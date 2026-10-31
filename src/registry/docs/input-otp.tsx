@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/input-otp/default"
 import Verify from "../demos/input-otp/verify"
+import Playground from "../playgrounds/input-otp"
+import Resend from "../demos/input-otp/resend"
 
 export const doc: ComponentDoc = {
   slug: "input-otp",
@@ -17,7 +19,9 @@ export const doc: ComponentDoc = {
       description: "Restrict to digits with `REGEXP_ONLY_DIGITS` and react to `onComplete`.",
       component: Verify,
     },
+    { name: "resend", title: "Resend timer", description: "A complete email verification step.", component: Resend },
   ],
+  playground: Playground,
   usage: {
     imports: `import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"`,
     code: `<InputOTP maxLength={6}>
