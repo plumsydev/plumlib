@@ -90,7 +90,7 @@ function AvatarGroup({
         "group/avatars flex items-center -space-x-2.5 hover:-space-x-1",
         "*:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background",
         // les avatars s'écartent au survol comme un jeu de cartes
-        "*:transition-[margin,transform] *:duration-400 *:ease-out-expo *:hover:-translate-y-0.5",
+        "*:transition-[margin,transform,translate,scale,rotate] *:duration-400 *:ease-out-expo *:hover:-translate-y-0.5",
         className
       )}
       {...props}
@@ -105,4 +105,19 @@ function AvatarGroup({
   )
 }
 
-export { Avatar, AvatarImage, AvatarFallback, AvatarStatus, AvatarGroup, avatarVariants }
+/**
+ * avatar dégradé unique généré depuis une chaine (email, id…), en data uri
+ * parfait comme image par défaut, zéro requete réseau
+ */
+function avatarGradient(seed: string) {
+  let h = 0
+  for (const c of seed) h = (Math.imul(31, h) + c.charCodeAt(0)) | 0
+  const hue = Math.abs(h) % 360
+  const hue2 = (hue + 40 + (Math.abs(h >> 8) % 80)) % 360
+  const x = 20 + (Math.abs(h >> 4) % 60)
+  const y = 20 + (Math.abs(h >> 12) % 60)
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><radialGradient id="g" cx="${x}%" cy="${y}%" r="90%"><stop offset="0%" stop-color="hsl(${hue2} 90% 72%)"/><stop offset="100%" stop-color="hsl(${hue} 75% 48%)"/></radialGradient></defs><rect width="80" height="80" fill="url(#g)"/></svg>`
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
+}
+
+export { Avatar, AvatarImage, AvatarFallback, AvatarStatus, AvatarGroup, avatarVariants, avatarGradient }
