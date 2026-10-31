@@ -1,25 +1,24 @@
 "use client"
 
-import { Avatar, AvatarFallback, AvatarImage, AvatarStatus } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage, AvatarStatus, avatarGradient } from "@/components/ui/avatar"
 
 export default function AvatarDemo() {
   return (
     <div className="flex items-center gap-4">
-      <Avatar>
-        <AvatarImage src="https://i.pravatar.cc/96?img=32" alt="Léa Martin" />
+      <Avatar size="lg">
+        <AvatarImage src={avatarGradient("lea@acme.com")} alt="Léa Martin" />
         <AvatarFallback>LM</AvatarFallback>
       </Avatar>
-      <Avatar>
+      <Avatar size="lg">
+        {/* image cassée => le fallback prend le relai tout seul */}
         <AvatarImage src="/does-not-exist.png" alt="Noah Kim" />
-        <AvatarFallback>NK</AvatarFallback>
+        <AvatarFallback className="bg-info/15 text-info">NK</AvatarFallback>
       </Avatar>
-      <div className="relative">
-        <Avatar className="overflow-visible">
-          <AvatarImage src="https://i.pravatar.cc/96?img=12" alt="Sam Ortiz" className="rounded-full" />
-          <AvatarFallback>SO</AvatarFallback>
-          <AvatarStatus status="online" />
-        </Avatar>
-      </div>
+      <Avatar size="lg" className="overflow-visible">
+        <AvatarImage src={avatarGradient("sam@acme.com")} alt="Sam Ortiz" className="rounded-full" />
+        <AvatarFallback>SO</AvatarFallback>
+        <AvatarStatus status="online" />
+      </Avatar>
     </div>
   )
 }
