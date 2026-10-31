@@ -4,7 +4,7 @@
   "description": "Add Plum UI components to your project.",
   "type": "module",
   "bin": {
-    "plum-ui": "./bin/plum-ui.mjs"
+    "plum-ui": "bin/plum-ui.mjs"
   },
   "files": ["bin"],
   "engines": { "node": ">=18.17" },
