@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/animated-number/default"
 import Currency from "../demos/animated-number/currency"
 import Stats from "../demos/animated-number/stats"
+import AnimatedNumberPlayground from "../playgrounds/animated-number"
 
 export const doc: ComponentDoc = {
   slug: "animated-number",
@@ -15,6 +16,7 @@ export const doc: ComponentDoc = {
     { name: "currency", title: "Currency & sign", description: "Any `Intl.NumberFormat` option works — currency, sign, decimals, locales.", component: Currency },
     { name: "stats", title: "Dashboard stats", description: "Percent and compact notation, rolling up from zero on mount.", component: Stats },
   ],
+  playground: AnimatedNumberPlayground,
   usage: {
     imports: `import { AnimatedNumber } from "@/components/ui/animated-number"`,
     code: `<AnimatedNumber
