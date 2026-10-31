@@ -4,24 +4,31 @@ import * as React from "react"
 import { Tooltip as TooltipPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
-function TooltipProvider({ delayDuration = 150, skipDelayDuration = 300, ...props }: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
+const HasProvider = React.createContext(false)
+
+function TooltipProvider({
+  delayDuration = 150,
+  skipDelayDuration = 300,
+  children,
+  ...props
+}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
   return (
     <TooltipPrimitive.Provider
       data-slot="tooltip-provider"
       delayDuration={delayDuration}
       skipDelayDuration={skipDelayDuration}
       {...props}
-    />
+    >
+      <HasProvider.Provider value>{children}</HasProvider.Provider>
+    </TooltipPrimitive.Provider>
   )
 }
 
-// chaque tooltip a son provider pr marcher sans setup, un provider global au dessus prend le relais
+// marche sans setup, mais si y a un provider au dessus on le garde
+// sinon on perd le skip delay qd on glisse d'un tooltip à l'autre
 function Tooltip(props: React.ComponentProps<typeof TooltipPrimitive.Root>) {
-  return (
-    <TooltipProvider>
-      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
-    </TooltipProvider>
-  )
+  const root = <TooltipPrimitive.Root data-slot="tooltip" {...props} />
+  return React.useContext(HasProvider) ? root : <TooltipProvider>{root}</TooltipProvider>
 }
 
 function TooltipTrigger(props: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
