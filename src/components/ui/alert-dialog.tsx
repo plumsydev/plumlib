@@ -2,11 +2,29 @@
 
 import * as React from "react"
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui"
+import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
+import { spring } from "@/lib/motion"
 import { buttonVariants } from "@/components/ui/button"
+import { useNestedOpen } from "@/components/ui/dialog"
 
-function AlertDialog(props: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {
-  return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />
+function AlertDialog({ open: openProp, defaultOpen, onOpenChange, ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {
+  const [inner, setInner] = React.useState(defaultOpen ?? false)
+  const open = openProp ?? inner
+  // ouverte depuis un dialog => le dialog parent recule derrière
+  useNestedOpen(open)
+
+  return (
+    <AlertDialogPrimitive.Root
+      data-slot="alert-dialog"
+      open={open}
+      onOpenChange={(value) => {
+        if (openProp === undefined) setInner(value)
+        onOpenChange?.(value)
+      }}
+      {...props}
+    />
+  )
 }
 
 function AlertDialogTrigger(props: React.ComponentProps<typeof AlertDialogPrimitive.Trigger>) {
@@ -41,6 +59,30 @@ function AlertDialogContent({ className, ...props }: React.ComponentProps<typeof
         {...props}
       />
     </AlertDialogPortal>
+  )
+}
+
+function AlertDialogMedia({
+  className,
+  variant = "default",
+  ...props
+}: React.ComponentProps<typeof motion.div> & { variant?: "default" | "destructive" | "warning" }) {
+  return (
+    <motion.div
+      initial={{ scale: 0.4, opacity: 0, rotate: -12 }}
+      animate={{ scale: 1, opacity: 1, rotate: 0 }}
+      transition={{ ...spring.bouncy, delay: 0.08 }}
+      data-slot="alert-dialog-media"
+      data-variant={variant}
+      className={cn(
+        "mb-1 flex size-10 items-center justify-center rounded-full [&_svg]:size-5",
+        "data-[variant=default]:bg-muted data-[variant=default]:text-foreground",
+        "data-[variant=destructive]:bg-destructive/10 data-[variant=destructive]:text-destructive",
+        "data-[variant=warning]:bg-warning/15 data-[variant=warning]:text-warning",
+        className
+      )}
+      {...props}
+    />
   )
 }
 
@@ -110,6 +152,7 @@ export {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogMedia,
   AlertDialogOverlay,
   AlertDialogPortal,
   AlertDialogTitle,
