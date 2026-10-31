@@ -18,8 +18,8 @@ export default function InputWithIcons() {
       </InputGroup>
       <InputGroup>
         <InputAddon>https://</InputAddon>
-        <Input placeholder="acme.com" />
-        <InputAddon align="end">.vercel.app</InputAddon>
+        <Input placeholder="my-project" />
+        <InputAddon align="end">.infraflow.app</InputAddon>
       </InputGroup>
     </div>
   )
