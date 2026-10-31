@@ -7,7 +7,7 @@ export default function CopyButtonPlayground() {
   return (
     <Playground
       controls={{
-        value: { type: "text", default: "npx plumui add copy-button" },
+        value: { type: "text", default: "npx plum-ui add copy-button" },
         label: { type: "text", default: "Copy" },
         variant: { type: "select", options: ["ghost", "outline", "secondary", "default"], default: "outline" },
         timeout: { type: "number", default: 1600, min: 500, max: 4000, step: 100 },
