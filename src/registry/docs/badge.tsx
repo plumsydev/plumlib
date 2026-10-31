@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/badge/default"
 import Status from "../demos/badge/status"
+import BadgePlayground from "../playgrounds/badge"
+import RemovableDemo from "../demos/badge/removable"
 
 export const doc: ComponentDoc = {
   slug: "badge",
@@ -11,7 +13,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "status", title: "Status", description: "Tinted semantic variants with a pulsing dot.", component: Status },
+    { name: "removable", title: "Removable labels", description: "Badges pop in and out, and the rest reflow with layout animations.", component: RemovableDemo },
   ],
+  playground: BadgePlayground,
   usage: {
     imports: `import { Badge } from "@/components/ui/badge"`,
     code: `<Badge variant="success" dot>Operational</Badge>`,
