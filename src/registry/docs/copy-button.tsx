@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/copy-button/default"
 import WithLabel from "../demos/copy-button/with-label"
+import Playground from "../playgrounds/copy-button"
+import ApiKey from "../demos/copy-button/api-key"
 
 export const doc: ComponentDoc = {
   slug: "copy-button",
@@ -13,7 +15,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "with-label", title: "With label", description: "Pass `label` and the text swaps too.", component: WithLabel },
+    { name: "api-key", title: "API key", description: "Copy with feedback through `onCopied`, next to a reveal toggle.", component: ApiKey },
   ],
+  playground: Playground,
   usage: {
     imports: `import { CopyButton } from "@/components/ui/copy-button"`,
     code: `<CopyButton value="npm i plum" />`,
