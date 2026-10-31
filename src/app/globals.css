@@ -10,6 +10,9 @@
 @layer base {
   html { scroll-behavior: smooth; scrollbar-gutter: stable; }
   :root { --header-h: 3.5rem; }
+  /* fond derrière le wrapper, c'est lui qu'on voit qd le drawer fait reculer la page */
+  body { background: oklch(0.86 0.004 286); }
+  .dark body, body:where(.dark *) { background: oklch(0 0 0); }
 }
 
 .shiki, .shiki span { color: var(--shiki-light); background-color: transparent !important; }
