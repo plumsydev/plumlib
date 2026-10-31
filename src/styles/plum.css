@@ -1,8 +1,11 @@
 /* plum ui — le thème complet, à copier tel quel ds ton globals.css */
 
-@custom-variant dark (&:is(.dark *));
+/* dark partout sauf ds un bloc forcé en clair avec .theme-light */
+@custom-variant dark (&:where(.dark, .dark *):not(:where(.theme-light, .theme-light *)));
 
-:root {
+:root,
+.theme-light {
+  color-scheme: light;
   --radius: 0.625rem;
 
   --background: oklch(0.995 0 0);
@@ -34,6 +37,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: oklch(0.135 0.004 286);
   --foreground: oklch(0.97 0 0);
   --card: oklch(0.165 0.005 286);
@@ -113,7 +117,7 @@
 }
 
 @keyframes pl-pop-in {
-  from { opacity: 0; transform: translate(var(--pl-x, 0), var(--pl-y, 0)) scale(0.96); filter: blur(2px); }
+  from { opacity: 0; transform: translate(var(--pl-x, 0), var(--pl-y, 0)) scale(0.94); filter: blur(3px); }
 }
 @keyframes pl-pop-out {
   to { opacity: 0; transform: translate(var(--pl-x, 0), var(--pl-y, 0)) scale(0.97); filter: blur(1px); }
@@ -137,14 +141,15 @@
 
 /* menus popovers tooltips, l'origine suit le trigger grace à radix */
 @utility pl-pop {
-  &[data-side="top"] { --pl-y: 4px; }
-  &[data-side="bottom"] { --pl-y: -4px; }
-  &[data-side="left"] { --pl-x: 4px; }
-  &[data-side="right"] { --pl-x: -4px; }
+  &[data-side="top"] { --pl-y: 6px; }
+  &[data-side="bottom"] { --pl-y: -6px; }
+  &[data-side="left"] { --pl-x: 6px; }
+  &[data-side="right"] { --pl-x: -6px; }
+  /* 300ms sur une courbe moins brutale que expo sinon ça pope au lieu de s'ouvrir */
   &[data-state="open"], &[data-state="delayed-open"], &[data-state="instant-open"] {
-    animation: pl-pop-in 0.22s var(--ease-out-expo);
+    animation: pl-pop-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  &[data-state="closed"] { animation: pl-pop-out 0.12s var(--ease-in-quart) forwards; }
+  &[data-state="closed"] { animation: pl-pop-out 0.15s var(--ease-in-quart) forwards; }
 }
 
 @utility pl-overlay {
@@ -171,8 +176,8 @@
 @utility pl-collapse {
   overflow: hidden;
   --pl-content-height: var(--radix-accordion-content-height, var(--radix-collapsible-content-height));
-  &[data-state="open"] { animation: pl-collapse-down 0.35s var(--ease-out-expo); }
-  &[data-state="closed"] { animation: pl-collapse-up 0.25s var(--ease-out-quart) forwards; }
+  &[data-state="open"] { animation: pl-collapse-down 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+  &[data-state="closed"] { animation: pl-collapse-up 0.3s var(--ease-out-quart) forwards; }
 }
 
 @layer base {
