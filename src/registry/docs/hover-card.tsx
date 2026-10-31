@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/hover-card/default"
 import Repository from "../demos/hover-card/repository"
+import Mentions from "../demos/hover-card/mentions"
+import HoverCardPlayground from "../playgrounds/hover-card"
 
 export const doc: ComponentDoc = {
   slug: "hover-card",
@@ -12,7 +14,14 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "repository", title: "Link preview", component: Repository },
+    {
+      name: "mentions",
+      title: "Mentions",
+      description: "Inline @mentions with rich previews and an arrow.",
+      component: Mentions,
+    },
   ],
+  playground: HoverCardPlayground,
   usage: {
     imports: `import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"`,
     code: `<HoverCard>
@@ -33,6 +42,7 @@ export const doc: ComponentDoc = {
       props: [
         { name: "side", type: '"top" | "right" | "bottom" | "left"', default: '"bottom"', description: "Preferred side." },
         { name: "align", type: '"start" | "center" | "end"', default: '"center"', description: "Alignment against the trigger." },
+        { name: "showArrow", type: "boolean", default: "false", description: "Adds an arrow that points at the trigger, with the border wrapped around it." },
       ],
     },
   ],
