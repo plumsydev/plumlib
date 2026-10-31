@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/accordion/default"
 import Multiple from "../demos/accordion/multiple"
 import CardDemo from "../demos/accordion/card"
+import AccordionPlayground from "../playgrounds/accordion"
 
 export const doc: ComponentDoc = {
   slug: "accordion",
@@ -15,6 +16,7 @@ export const doc: ComponentDoc = {
     { name: "multiple", title: "Multiple", description: "Let several sections stay open with `type=\"multiple\"`.", component: Multiple },
     { name: "card", title: "Inside a card", description: "Compose with icons and a bordered surface.", component: CardDemo },
   ],
+  playground: AccordionPlayground,
   usage: {
     imports: `import {
   Accordion,
