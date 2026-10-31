@@ -10,7 +10,7 @@ import { spring } from "@/lib/motion"
 const buttonVariants = cva(
   [
     "relative inline-flex shrink-0 cursor-pointer select-none items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium",
-    "transition-[background-color,color,box-shadow,transform,opacity] duration-200 ease-out-quart",
+    "transition-[background-color,color,box-shadow,scale,opacity] duration-200 ease-out-quart",
     "active:scale-[0.97] active:duration-75",
     "outline-none focus-visible:ring-[3px] focus-visible:ring-ring",
     "disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none",
