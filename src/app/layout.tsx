@@ -13,7 +13,22 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: { default: `${siteConfig.name} — Animated React components`, template: `%s · ${siteConfig.name}` },
   description: siteConfig.description,
-  openGraph: { title: siteConfig.name, description: siteConfig.description, type: "website" },
+  applicationName: siteConfig.name,
+  keywords: ["react", "components", "ui library", "tailwind css", "radix", "motion", "animation", "design system"],
+  authors: [{ name: "Plumsy", url: "https://plumsy.dev" }],
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
+    url: siteConfig.url,
+    title: `${siteConfig.name} — Animated React components`,
+    description: siteConfig.description,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} — Animated React components`,
+    description: siteConfig.description,
+  },
 }
 
 export const viewport: Viewport = {
