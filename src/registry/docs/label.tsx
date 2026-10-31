@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/label/default"
 import WithInput from "../demos/label/with-input"
+import Playground from "../playgrounds/label"
+import Required from "../demos/label/required"
 
 export const doc: ComponentDoc = {
   slug: "label",
@@ -13,7 +15,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "with-input", title: "With input", component: WithInput },
+    { name: "required", title: "Form hints", description: "Required markers, counters, and disabled styling for free.", component: Required },
   ],
+  playground: Playground,
   usage: {
     imports: `import { Label } from "@/components/ui/label"`,
     code: `<Label htmlFor="email">Email</Label>`,
