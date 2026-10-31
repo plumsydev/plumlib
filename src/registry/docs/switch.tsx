@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/switch/default"
 import Sizes from "../demos/switch/sizes"
 import Settings from "../demos/switch/settings"
+import Playground from "../playgrounds/switch"
 
 export const doc: ComponentDoc = {
   slug: "switch",
@@ -16,6 +17,7 @@ export const doc: ComponentDoc = {
     { name: "sizes", title: "Sizes", component: Sizes },
     { name: "settings", title: "Settings list", component: Settings },
   ],
+  playground: Playground,
   usage: {
     imports: `import { Switch } from "@/components/ui/switch"`,
     code: `<Switch defaultChecked />`,
