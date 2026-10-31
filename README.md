@@ -3,8 +3,8 @@
 Animated, accessible React components you copy into your app. Built on Radix, Tailwind CSS v4 and Motion, installed with its own zero-dependency CLI.
 
 ```bash
-npx plum-ui init
-npx plum-ui add button dialog toast
+npx @plumsydev/plum-ui init
+npx @plumsydev/plum-ui add button dialog toast
 ```
 
 - 70+ components across inputs, overlays, feedback, navigation, data display and motion effects
