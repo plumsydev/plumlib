@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/select/default"
 import Groups from "../demos/select/groups"
 import WithIcons from "../demos/select/with-icons"
+import Playground from "../playgrounds/select"
 
 export const doc: ComponentDoc = {
   slug: "select",
@@ -15,6 +16,7 @@ export const doc: ComponentDoc = {
     { name: "groups", title: "Groups", description: "Label and separate long lists. Scroll buttons appear when needed.", component: Groups },
     { name: "with-icons", title: "With icons", description: "Icons in items are mirrored in the trigger.", component: WithIcons },
   ],
+  playground: Playground,
   usage: {
     imports: `import {
   Select,
