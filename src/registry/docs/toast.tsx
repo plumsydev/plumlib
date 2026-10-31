@@ -3,6 +3,8 @@ import Default from "../demos/toast/default"
 import Types from "../demos/toast/types"
 import PromiseDemo from "../demos/toast/promise"
 import Stack from "../demos/toast/stack"
+import Undo from "../demos/toast/undo"
+import ToastPlayground from "../playgrounds/toast"
 
 export const doc: ComponentDoc = {
   slug: "toast",
@@ -21,7 +23,14 @@ export const doc: ComponentDoc = {
       component: PromiseDemo,
     },
     { name: "stack", title: "Stacking", description: "Toasts pile up compactly and fan out while hovered. Timers pause meanwhile.", component: Stack },
+    {
+      name: "undo",
+      title: "Undo",
+      description: "Archive a message and bring it back from the toast. Custom icon via `icon`.",
+      component: Undo,
+    },
   ],
+  playground: ToastPlayground,
   usage: {
     imports: `import { toast, Toaster } from "@/components/ui/toast"`,
     code: `// once, in your root layout
@@ -39,6 +48,9 @@ toast.success("Saved", { description: "Your changes are live." })`,
         { name: "visibleToasts", type: "number", default: "3", description: "Max toasts visible at once. Extra ones wait behind." },
         { name: "duration", type: "number", default: "4000", description: "Default time before auto-dismiss, in ms." },
         { name: "closeButton", type: "boolean", default: "false", description: "Show a close button on hover." },
+        { name: "richColors", type: "boolean", default: "false", description: "Tints success, error, info and warning toasts." },
+        { name: "expand", type: "boolean", default: "false", description: "Always show the stack spread out instead of on hover." },
+        { name: "id", type: "string", description: "Only shows toasts sent with the matching `toasterId`. Lets you mount several toasters." },
       ],
     },
     {
@@ -51,6 +63,10 @@ toast.success("Saved", { description: "Your changes are live." })`,
         { name: "id", type: "string | number", description: "Pass an existing id to update that toast in place." },
         { name: "dismissible", type: "boolean", default: "true", description: "Allow swipe to dismiss." },
         { name: "onDismiss", type: "() => void", description: "Called when the toast is dismissed." },
+        { name: "cancel", type: "{ label: string; onClick?: () => void }", description: "Secondary, quieter button next to the action." },
+        { name: "icon", type: "ReactNode", description: "Replaces the icon of the toast type." },
+        { name: "closeButton", type: "boolean", description: "Overrides the Toaster setting for this toast." },
+        { name: "toasterId", type: "string", description: "Sends the toast to a specific `<Toaster id>`." },
       ],
     },
     {
