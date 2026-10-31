@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/scroll-area/default"
 import Horizontal from "../demos/scroll-area/horizontal"
+import ScrollAreaPlayground from "../playgrounds/scroll-area"
+import ChatDemo from "../demos/scroll-area/chat"
 
 export const doc: ComponentDoc = {
   slug: "scroll-area",
@@ -13,7 +15,9 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "horizontal", title: "Horizontal", description: "`orientation=\"horizontal\"` with a masked edge.", component: Horizontal },
+    { name: "chat", title: "Live log", description: "Follows new lines only when you're at the bottom, with a jump button otherwise.", component: ChatDemo },
   ],
+  playground: ScrollAreaPlayground,
   usage: {
     imports: `import { ScrollArea } from "@/components/ui/scroll-area"`,
     code: `<ScrollArea fade className="h-72 w-48 rounded-md border">
