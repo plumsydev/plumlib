@@ -7,7 +7,7 @@ import { spring } from "@/lib/motion"
 import { BorderBeam } from "@/components/ui/border-beam"
 import { Reveal } from "./reveal"
 
-const command = "npx plumui add dialog"
+const command = "npx plum-ui add dialog"
 const output = [
   { text: "Resolving dialog, button", delay: 300 },
   { text: "Installed radix-ui, motion", delay: 700 },
@@ -44,7 +44,7 @@ export function Install() {
           <span className="text-muted-foreground">Zero lock-in.</span>
         </h2>
         <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
-          The plumui CLI drops the source into your project, rewrites imports to your aliases, installs what&apos;s
+          The plum-ui CLI drops the source into your project, rewrites imports to your aliases, installs what&apos;s
           missing with your package manager and pulls in the components it builds on.
         </p>
         <ul className="mt-6 space-y-2.5 text-sm">
