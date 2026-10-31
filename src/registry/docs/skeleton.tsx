@@ -2,6 +2,7 @@ import type { ComponentDoc } from "../types"
 import Default from "../demos/skeleton/default"
 import CardDemo from "../demos/skeleton/card"
 import Loading from "../demos/skeleton/loading"
+import SkeletonPlayground from "../playgrounds/skeleton"
 
 export const doc: ComponentDoc = {
   slug: "skeleton",
@@ -13,6 +14,7 @@ export const doc: ComponentDoc = {
     { name: "card", title: "Card", component: CardDemo },
     { name: "loading", title: "Loading → content", description: "Crossfade to real data with a staggered blur-in.", component: Loading },
   ],
+  playground: SkeletonPlayground,
   usage: {
     imports: `import { Skeleton } from "@/components/ui/skeleton"`,
     code: `<Skeleton className="h-4 w-48" />`,
