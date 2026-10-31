@@ -20,7 +20,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const doc = getComponent((await params).slug)
   if (!doc) return {}
-  return { title: doc.name, description: doc.description }
+  return {
+    title: doc.name,
+    description: doc.description,
+    openGraph: { title: `${doc.name} · Plum UI`, description: doc.description, url: `/docs/components/${doc.slug}` },
+    twitter: { card: "summary_large_image", title: `${doc.name} · Plum UI`, description: doc.description },
+  }
 }
 
 export default async function ComponentPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -42,6 +47,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
   const deps = doc.dependencies ?? []
 
   const toc: TocItem[] = [
+    ...(doc.playground ? [{ id: "playground", title: "Playground" }] : []),
     { id: "installation", title: "Installation" },
     { id: "usage", title: "Usage" },
     ...(examples.length
@@ -72,14 +78,23 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         <main.component />
       </ComponentPreview>
 
+      {doc.playground && (
+        <>
+          <H2 id="playground">Playground</H2>
+          <P className="-mt-1 text-sm text-muted-foreground">Tweak the props, the preview and the code follow.</P>
+          <doc.playground />
+        </>
+      )}
+
       <H2 id="installation">Installation</H2>
       <Tabs defaultValue="cli">
         <TabsList>
           <TabsTrigger value="cli">CLI</TabsTrigger>
           <TabsTrigger value="manual">Manual</TabsTrigger>
+          <TabsTrigger value="shadcn">shadcn CLI</TabsTrigger>
         </TabsList>
         <TabsContent value="cli" className="pt-2">
-          <CodeBlock lang="bash" code={`npx shadcn@latest add ${registryUrl(slug)}`} />
+          <CodeBlock lang="bash" code={`npx plumui add ${slug}`} />
           {doc.registryDependencies?.length ? (
             <P className="text-sm text-muted-foreground">
               Also pulls in{" "}
@@ -99,7 +114,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
           <Steps>
             {deps.length > 0 && (
               <Step title="Install the dependencies">
-                <CodeBlock lang="bash" code={`pnpm add ${deps.join(" ")}`} />
+                <CodeBlock lang="bash" code={`npm install ${deps.join(" ")}`} />
               </Step>
             )}
             {doc.registryDependencies?.length ? (
@@ -126,6 +141,12 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
               </p>
             </Step>
           </Steps>
+        </TabsContent>
+        <TabsContent value="shadcn" className="pt-2">
+          <CodeBlock lang="bash" code={`npx shadcn@latest add ${registryUrl(slug)}`} />
+          <P className="text-sm text-muted-foreground">
+            Already using the shadcn CLI? Plum UI publishes a mirror of every item in its registry format.
+          </P>
         </TabsContent>
       </Tabs>
 
