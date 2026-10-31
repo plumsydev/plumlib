@@ -1,6 +1,8 @@
 import type { ComponentDoc } from "../types"
 import Default from "../demos/drawer/default"
 import Direction from "../demos/drawer/direction"
+import SnapPoints from "../demos/drawer/snap-points"
+import DrawerPlayground from "../playgrounds/drawer"
 
 export const doc: ComponentDoc = {
   slug: "drawer",
@@ -12,7 +14,14 @@ export const doc: ComponentDoc = {
   demos: [
     { name: "default", component: Default },
     { name: "direction", title: "Direction", description: "Drawers can come from any edge with `direction`.", component: Direction },
+    {
+      name: "snap-points",
+      title: "Snap points",
+      description: "Drag between a peek, half and full height — like a maps app.",
+      component: SnapPoints,
+    },
   ],
+  playground: DrawerPlayground,
   usage: {
     imports: `import {
   Drawer,
